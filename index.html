@@ -219,7 +219,7 @@
     --vs-statusbar: #007acc; --vs-scrollbar: #424242;
   }
 #page-vs   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--vs-bg); color:var(--vs-text); height:100vh; display:flex; flex-direction:column; overflow:hidden; font-size:13px; }
+  #page-vs { font-family:'Segoe UI',system-ui,sans-serif; background:var(--vs-bg); color:var(--vs-text); height:100vh; display:flex; flex-direction:column; overflow:hidden; font-size:13px; }
 #page-vs   .titlebar { background:var(--vs-titlebar); height:30px; display:flex; align-items:center; padding:0 12px; gap:8px; user-select:none; border-bottom:1px solid #111; flex-shrink:0; }
 #page-vs   .titlebar-dots { display:flex; gap:6px; }
 #page-vs   .dot { width:12px; height:12px; border-radius:50%; }
@@ -1024,13 +1024,13 @@ buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  if (name === 'vs' && !vsInited) { initVS(); vsInited = true; }
+  if (name === 'vs' && !vsInited) {
+    vsInited = true;
+    buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
+  }
 }
 
 let vsInited = false;
-function initVS() {
-  buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
-}
 </script>
 <script>
 
@@ -1589,19 +1589,7 @@ function syncScroll(){ document.getElementById('line-numbers').scrollTop=documen
 
 buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
 
-// Override buildSidebar/buildTabs/renderTask to use correct classes
-function buildSidebar(){
-  const c=document.getElementById('sidebar-files');
-  c.innerHTML='';
-  T.forEach((t,i)=>{
-    const el=document.createElement('div');
-    el.className='tree-file'+(i===0?' active':'');
-    el.id='sf-'+i;
-    el.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="ticket-num">&#8470;${t.num}</span>`;
-    el.onclick=()=>openTicket(i);
-    c.appendChild(el);
-  });
-}
+
 </script>
 </body>
 </html>
