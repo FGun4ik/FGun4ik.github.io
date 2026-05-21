@@ -4,712 +4,1604 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Егор Евстифеев — Разработчик / Сисадмин</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@300;700;900&display=swap" rel="stylesheet">
 <style>
+/* ===== SWITCHER ===== */
+.page { display: none !important; }
+.page.active { display: block !important; }
+#page-vs.active { display: flex !important; }
+
+/* ===== RESUME STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+#page-resume {
+  --bg: #0a0a0f; --surface: #111118; --surface2: #1a1a24;
+  --border: #2a2a3a; --accent: #00d4ff; --accent2: #7c3aed;
+  --text: #e2e8f0; --text-dim: #64748b; --text-muted: #94a3b8;
+  --green: #10b981; --yellow: #f59e0b;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+#page-resume * { margin: 0; padding: 0; box-sizing: border-box; }
+.r-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,15,0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #2a2a3a;
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.r-nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 15px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+}
+.r-nav-links { display: flex; gap: 32px; }
+.r-nav-links a {
+  font-size: 13px; color: #64748b;
+  text-decoration: none; letter-spacing: 0.5px;
+  transition: color .2s;
+  font-family: 'JetBrains Mono', monospace;
+}
+.r-nav-links a:hover { color: #00d4ff; }
+.r-status-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 20px; padding: 6px 14px;
+  font-size: 12px; color: #10b981;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, transform .15s;
+  user-select: none;
+}
+.r-status-badge:hover {
+  background: rgba(16,185,129,0.16);
+  border-color: rgba(16,185,129,0.5);
+  transform: scale(1.04);
+}
+.r-status-badge:active { transform: scale(0.97); }
+.r-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #10b981; box-shadow: 0 0 8px #10b981;
+  animation: rpulse 2s infinite;
+}
+@keyframes rpulse { 0%,100%{opacity:1}50%{opacity:.4} }
+.r-hero {
+  padding: 140px 40px 60px;
+  max-width: 1100px; margin: 0 auto;
+}
+.r-hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: #00d4ff;
+  letter-spacing: 3px; margin-bottom: 20px; opacity: .8;
+}
+.r-hero-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(42px,7vw,80px);
+  font-weight: 700; line-height: 1; letter-spacing: -2px;
+  background: linear-gradient(135deg,#fff 0%,#94a3b8 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+.r-hero-title {
+  font-size: 18px; color: #00d4ff;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400; margin-bottom: 28px; letter-spacing: 1px;
+}
+.r-hero-bio {
+  font-size: 15px; color: #94a3b8;
+  max-width: 540px; line-height: 1.8; margin-bottom: 40px;
+}
+.r-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.r-btn-p {
+  padding: 12px 28px; border-radius: 6px;
+  background: linear-gradient(135deg,#00d4ff,#7c3aed);
+  color: #fff; font-size: 14px; font-weight: 500;
+  text-decoration: none; letter-spacing: .5px;
+  transition: opacity .2s, transform .1s;
+}
+.r-btn-p:hover { opacity:.85; transform:translateY(-1px); }
+.r-btn-s {
+  padding: 12px 28px; border-radius: 6px;
+  border: 1px solid #2a2a3a; color: #94a3b8;
+  font-size: 14px; font-weight: 500;
+  text-decoration: none; letter-spacing: .5px;
+  transition: border-color .2s, color .2s, transform .1s;
+}
+.r-btn-s:hover { border-color:#00d4ff; color:#00d4ff; transform:translateY(-1px); }
+.r-chips {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  padding: 0 40px 60px; max-width: 1100px; margin: 0 auto;
+}
+.r-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: #111118; border: 1px solid #2a2a3a;
+  border-radius: 6px; padding: 8px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: #94a3b8; text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.r-chip:hover { border-color:#00d4ff; color:#00d4ff; }
+.r-section {
+  padding: 60px 40px; max-width: 1100px; margin: 0 auto;
+}
+.r-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: #00d4ff;
+  letter-spacing: 3px; margin-bottom: 12px; opacity: .7;
+}
+.r-section-title {
+  font-size: 28px; font-weight: 600;
+  margin-bottom: 40px; letter-spacing: -.5px;
+}
+.r-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 16px;
+}
+.r-skill-card {
+  background: #111118; border: 1px solid #2a2a3a;
+  border-radius: 10px; padding: 20px;
+  transition: border-color .2s, transform .2s;
+}
+.r-skill-card:hover { border-color:#00d4ff; transform:translateY(-2px); }
+.r-skill-icon { font-size: 22px; margin-bottom: 12px; }
+.r-skill-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: #00d4ff;
+  letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;
+}
+.r-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.r-tag {
+  background: #1a1a24; border: 1px solid #2a2a3a;
+  border-radius: 4px; padding: 3px 9px;
+  font-size: 12px; color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+}
+.r-exp-list { display: flex; flex-direction: column; gap: 20px; }
+.r-exp-card {
+  background: #111118; border: 1px solid #2a2a3a;
+  border-left: 3px solid #00d4ff;
+  border-radius: 10px; padding: 24px 28px;
+  transition: transform .2s;
+}
+.r-exp-card:hover { transform:translateX(4px); }
+.r-exp-meta {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+}
+.r-exp-role { font-size: 16px; font-weight: 600; }
+.r-exp-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: #64748b;
+  background: #1a1a24; border: 1px solid #2a2a3a;
+  border-radius: 4px; padding: 3px 8px;
+}
+.r-exp-company {
+  font-size: 13px; color: #00d4ff;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 14px;
+}
+.r-exp-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.r-exp-items li {
+  font-size: 14px; color: #94a3b8;
+  padding-left: 16px; position: relative;
+}
+.r-exp-items li::before {
+  content: '▸'; position: absolute; left: 0;
+  color: #00d4ff; font-size: 10px; top: 3px;
+}
+.r-divider {
+  height: 1px;
+  background: linear-gradient(90deg,transparent,#2a2a3a,transparent);
+  margin: 0 40px;
+}
+.r-footer {
+  text-align: center; padding: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: #64748b;
+}
+
+/* ===== VS STYLES (scoped to #page-vs) ===== */
+
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --card: #16161f;
-    --accent: #00e5ff;
-    --accent2: #7c3aed;
-    --text: #e8e8f0;
-    --muted: #6b6b80;
-    --border: rgba(0,229,255,0.12);
+    --vs-bg: #1e1e1e; --vs-sidebar: #252526; --vs-panel: #2d2d30;
+    --vs-tab-active: #1e1e1e; --vs-tab-inactive: #2d2d30; --vs-tab-hover: #3e3e42;
+    --vs-border: #3f3f46; --vs-accent: #0078d4; --vs-accent2: #569cd6;
+    --vs-green: #4ec9b0; --vs-yellow: #dcdcaa; --vs-orange: #ce9178;
+    --vs-purple: #c586c0; --vs-comment: #6a9955; --vs-string: #ce9178;
+    --vs-number: #b5cea8; --vs-keyword: #569cd6; --vs-type: #4ec9b0;
+    --vs-text: #d4d4d4; --vs-text-dim: #858585; --vs-titlebar: #3c3c3c;
+    --vs-statusbar: #007acc; --vs-scrollbar: #424242;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    overflow-x: hidden;
-  }
-
-  /* GRID BACKGROUND */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* GLOW ORBS */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .orb-1 { width: 500px; height: 500px; background: rgba(0,229,255,0.06); top: -100px; right: -100px; }
-  .orb-2 { width: 400px; height: 400px; background: rgba(124,58,237,0.08); bottom: 20%; left: -150px; }
-
-  /* NAVBAR */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 900;
-    font-size: 1rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 60px 80px;
-    gap: 80px;
-  }
-
-  .hero-text { flex: 1; }
-
-  .hero-tag {
-    display: inline-block;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 5px 14px;
-    margin-bottom: 32px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-name {
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 900;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  .hero-name span { color: var(--accent); }
-
-  .hero-role {
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 300;
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
-    color: var(--muted);
-    margin-top: 16px;
-    letter-spacing: 0.05em;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-bio {
-    margin-top: 32px;
-    max-width: 480px;
-    font-size: 0.8rem;
-    line-height: 1.8;
-    color: #9999b0;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .hero-btns {
-    margin-top: 40px;
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.4s ease both;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #000;
-    font-weight: 700;
-  }
-  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-  .btn-outline:hover { background: rgba(0,229,255,0.08); transform: translateY(-2px); }
-
-  /* HERO CARD */
-  .hero-card {
-    position: relative;
-    flex-shrink: 0;
-    width: 300px;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-card-inner {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 32px;
-  }
-
-  .hero-photo {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    object-position: top;
-    filter: grayscale(20%) contrast(1.1);
-    display: block;
-    background: var(--surface);
-  }
-
-  .hero-photo-placeholder {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: var(--muted);
-  }
-
-  .card-status {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  .status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #00ff87;
-    box-shadow: 0 0 8px #00ff87;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .card-contacts {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .card-contact-item {
-    font-size: 0.62rem;
-    color: var(--muted);
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .card-contact-item a { color: var(--accent); text-decoration: none; }
-  .card-contact-item a:hover { text-decoration: underline; }
-
-  /* SECTIONS */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 100px 60px;
-  }
-
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    line-height: 1.1;
-    margin-bottom: 60px;
-  }
-
-  /* SKILLS */
-  #skills { background: var(--surface); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
-  }
-
-  .skill-block {
-    background: var(--card);
-    padding: 32px;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: default;
-  }
-
-  .skill-block:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .skill-block-icon {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-  }
-
-  .skill-block-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-    color: var(--text);
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-size: 0.6rem;
-    padding: 4px 10px;
-    background: rgba(0,229,255,0.06);
-    border: 1px solid rgba(0,229,255,0.15);
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-  }
-
-  .tag-purple {
-    background: rgba(124,58,237,0.08);
-    border-color: rgba(124,58,237,0.2);
-    color: #a78bfa;
-  }
-
-  /* EXPERIENCE */
-  .timeline {
-    position: relative;
-    max-width: 800px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .timeline-item {
-    padding-left: 40px;
-    padding-bottom: 56px;
-    position: relative;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.5s, transform 0.5s;
-  }
-
-  .timeline-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 8px;
-    width: 9px; height: 9px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent);
-  }
-
-  .timeline-date {
-    font-size: 0.62rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .timeline-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .timeline-company {
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .timeline-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .timeline-list li {
-    font-size: 0.72rem;
-    color: #9999b0;
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .timeline-list li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  /* CONTACTS */
-  #contacts { background: var(--surface); }
-
-  .contacts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2px;
-  }
-
-  .contact-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 32px;
-    text-decoration: none;
-    color: var(--text);
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .contact-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .contact-icon { font-size: 1.8rem; }
-
-  .contact-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .contact-value {
-    font-size: 0.75rem;
-    color: var(--accent);
-    word-break: break-all;
-  }
-
-  /* FOOTER */
-  footer {
-    position: relative;
-    z-index: 1;
-    padding: 32px 60px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.62rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hero { flex-direction: column-reverse; padding: 100px 24px 60px; gap: 40px; }
-    .hero-card { width: 100%; max-width: 320px; margin: 0 auto; }
-    section { padding: 70px 24px; }
-    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-  }
+#page-vs   * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--vs-bg); color:var(--vs-text); height:100vh; display:flex; flex-direction:column; overflow:hidden; font-size:13px; }
+#page-vs   .titlebar { background:var(--vs-titlebar); height:30px; display:flex; align-items:center; padding:0 12px; gap:8px; user-select:none; border-bottom:1px solid #111; flex-shrink:0; }
+#page-vs   .titlebar-dots { display:flex; gap:6px; }
+#page-vs   .dot { width:12px; height:12px; border-radius:50%; }
+#page-vs   .dot-red{background:#ff5f57} .dot-yellow{background:#febc2e} .dot-green{background:#28c840}
+#page-vs   .titlebar-title { flex:1; text-align:center; color:#ccc; font-size:12px; letter-spacing:.3px; }
+#page-vs   .menubar { background:var(--vs-titlebar); height:26px; display:flex; align-items:center; padding:0 6px; gap:2px; border-bottom:1px solid #111; flex-shrink:0; }
+#page-vs   .menu-item { padding:2px 8px; border-radius:3px; color:#ccc; font-size:12px; cursor:pointer; }
+#page-vs   .menu-item:hover { background:rgba(255,255,255,.1); }
+#page-vs   .toolbar { background:var(--vs-panel); height:32px; display:flex; align-items:center; padding:0 6px; gap:2px; border-bottom:1px solid var(--vs-border); flex-shrink:0; }
+#page-vs   .toolbar-btn { width:26px; height:26px; border:none; background:transparent; color:#bbb; border-radius:3px; cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; }
+#page-vs   .toolbar-btn:hover { background:rgba(255,255,255,.1); }
+#page-vs   .toolbar-sep { width:1px; height:18px; background:var(--vs-border); margin:0 4px; }
+#page-vs   .run-btn { background:#0e639c; border:none; color:#fff; padding:3px 14px; border-radius:2px; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px; margin-left:8px; }
+#page-vs   .run-btn:hover { background:#1177bb; }
+#page-vs   .main { flex:1; display:flex; overflow:hidden; }
+#page-vs   .activitybar { width:48px; background:#333; display:flex; flex-direction:column; align-items:center; padding:6px 0; gap:4px; border-right:1px solid #111; flex-shrink:0; }
+#page-vs   .act-btn { width:36px; height:36px; border:none; background:transparent; color:#858585; border-radius:3px; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; position:relative; }
+#page-vs   .act-btn:hover, .act-btn.active { color:#e8e8e8; }
+#page-vs   .act-btn.active::before { content:''; position:absolute; left:0; top:6px; bottom:6px; width:2px; background:#0078d4; border-radius:0 2px 2px 0; }
+#page-vs   .sidebar { width:240px; background:var(--vs-sidebar); border-right:1px solid var(--vs-border); display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; }
+#page-vs   .sidebar-header { padding:8px 12px 6px; font-size:11px; font-weight:700; color:#bbb; letter-spacing:1px; text-transform:uppercase; border-bottom:1px solid var(--vs-border); flex-shrink:0; }
+#page-vs   .sidebar-tree { flex:1; overflow-y:auto; padding:4px 0; }
+#page-vs   .sidebar-tree::-webkit-scrollbar { width:6px; }
+#page-vs   .sidebar-tree::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
+#page-vs   .tree-folder { padding:2px 8px 2px 12px; display:flex; align-items:center; gap:6px; color:#ccc; font-size:12px; cursor:pointer; user-select:none; }
+#page-vs   .tree-folder:hover { background:rgba(255,255,255,.05); }
+#page-vs   .tree-file { padding:2px 8px 2px 28px; display:flex; align-items:center; gap:6px; color:#ccc; font-size:12px; cursor:pointer; user-select:none; transition:background .1s; }
+#page-vs   .tree-file:hover { background:rgba(255,255,255,.05); }
+#page-vs   .tree-file.active { background:#37373d; color:#fff; }
+#page-vs   .file-icon { color:#519aba; font-size:11px; }
+#page-vs   .ticket-num { margin-left:auto; color:var(--vs-text-dim); font-size:10px; }
+#page-vs   .editor-area { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+#page-vs   .tabs-bar { background:var(--vs-panel); display:flex; border-bottom:1px solid var(--vs-border); overflow-x:auto; flex-shrink:0; }
+#page-vs   .tabs-bar::-webkit-scrollbar { height:4px; }
+#page-vs   .tabs-bar::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); }
+#page-vs   .tab { display:flex; align-items:center; gap:6px; padding:0 12px; height:35px; border-right:1px solid var(--vs-border); cursor:pointer; font-size:12px; color:#969696; background:var(--vs-tab-inactive); white-space:nowrap; flex-shrink:0; user-select:none; }
+#page-vs   .tab:hover { background:var(--vs-tab-hover); }
+#page-vs   .tab.active { background:var(--vs-tab-active); color:#fff; border-top:1px solid #0078d4; }
+#page-vs   .tab-close { font-size:13px; color:#858585; border-radius:3px; padding:1px 2px; }
+#page-vs   .tab-close:hover { background:rgba(255,255,255,.15); color:#fff; }
+#page-vs   .editor-split { flex:1; display:flex; overflow:hidden; }
+#page-vs   .code-editor { flex:1; display:flex; overflow:hidden; background:var(--vs-bg); }
+#page-vs   .line-numbers { background:var(--vs-bg); color:var(--vs-text-dim); font-family:'Consolas','Courier New',monospace; font-size:13px; line-height:20px; padding:10px 8px 10px 16px; text-align:right; min-width:50px; border-right:1px solid rgba(255,255,255,.05); user-select:none; overflow:hidden; flex-shrink:0; }
+#page-vs   .code-content { flex:1; overflow:auto; padding:10px 0 10px 16px; font-family:'Consolas','Courier New',monospace; font-size:13px; line-height:20px; white-space:pre; }
+#page-vs   .code-content::-webkit-scrollbar { width:10px; height:10px; }
+#page-vs   .code-content::-webkit-scrollbar-track { background:var(--vs-bg); }
+#page-vs   .code-content::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
+#page-vs   .kw { color:#569cd6; } .type { color:#4ec9b0; } .fn { color:#dcdcaa; }
+#page-vs   .str { color:#ce9178; } .num { color:#b5cea8; } .cmt { color:#6a9955; }
+#page-vs   .pp { color:#c586c0; }
+#page-vs   .task-panel { width:300px; background:var(--vs-sidebar); border-left:1px solid var(--vs-border); display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; }
+#page-vs   .task-header { padding:10px 14px; background:var(--vs-panel); border-bottom:1px solid var(--vs-border); font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:1px; font-weight:700; }
+#page-vs   .task-body { padding:14px; overflow-y:auto; flex:1; font-size:13px; line-height:1.7; color:#ccc; }
+#page-vs   .task-body::-webkit-scrollbar { width:6px; }
+#page-vs   .task-body::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
+#page-vs   .task-title { color:#4fc3f7; font-weight:700; font-size:14px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--vs-border); }
+#page-vs   .task-item { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
+#page-vs   .task-bullet { color:#0078d4; flex-shrink:0; margin-top:3px; }
+#page-vs   .bottom-panel { background:var(--vs-panel); border-top:1px solid var(--vs-border); height:110px; display:flex; flex-direction:column; flex-shrink:0; }
+#page-vs   .panel-tabs { display:flex; border-bottom:1px solid var(--vs-border); }
+#page-vs   .panel-tab { padding:4px 14px; font-size:12px; color:#969696; cursor:pointer; border-bottom:2px solid transparent; user-select:none; }
+#page-vs   .panel-tab.active { color:#fff; border-bottom-color:#0078d4; }
+#page-vs   .terminal-body { flex:1; overflow-y:auto; padding:6px 14px; font-family:'Consolas',monospace; font-size:12px; color:#ccc; line-height:1.6; }
+#page-vs   .term-ok { color:#4ec9b0; } .term-info { color:#569cd6; } .term-prompt { color:#0e639c; }
+#page-vs   .statusbar { background:var(--vs-statusbar); height:22px; display:flex; align-items:center; padding:0 10px; gap:16px; flex-shrink:0; }
+#page-vs   .status-item { color:rgba(255,255,255,.9); font-size:11.5px; display:flex; align-items:center; gap:4px; cursor:pointer; }
+#page-vs   .status-right { margin-left:auto; display:flex; gap:12px; }
+
+
+/* back button override */
+#page-vs .back-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px; padding: 2px 10px;
+  border-radius: 3px; cursor: pointer;
+  margin-right: 6px;
+  transition: background .15s;
+  font-family: 'Segoe UI', sans-serif;
+}
+#page-vs .back-btn:hover { background: rgba(255,255,255,0.16); }
 </style>
 </head>
-<body>
+<body style="margin:0;padding:0;">
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">EE.DEV</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Навыки</a></li>
-    <li><a href="#experience">Опыт</a></li>
-    <li><a href="#contacts">Контакты</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-tag">// Доступен для работы</div>
-    <h1 class="hero-name">ЕГОР<br><span>ЕВСТИ</span>ФЕЕВ</h1>
-    <p class="hero-role">Backend Developer &amp; System Administrator</p>
-    <p class="hero-bio">
-      Студент 4-го курса, специальности «Разработчик Программного Обеспечения».
-      Хорошо и быстро обучаюсь. Каждый день совершенствуюсь и решаю разные задачи
-      по своей специальности.
-    </p>
-    <div class="hero-btns">
-      <a href="https://github.com/FGun4ik" target="_blank" class="btn btn-primary">GitHub →</a>
-      <a href="#contacts" class="btn btn-outline">Связаться</a>
+<!-- ===== PAGE 1: RESUME ===== -->
+<div id="page-resume" class="page active">
+  <nav class="r-nav">
+    <div class="r-nav-logo">EE.DEV</div>
+    <div class="r-nav-links">
+      <a href="#skills">Навыки</a>
+      <a href="#experience">Опыт</a>
+      <a href="#contacts">Контакты</a>
     </div>
+    <div class="r-status-badge" onclick="showPage('vs')" title="Нажми, чтобы узнать больше">
+      <div class="r-dot"></div>
+      ДОСТУПЕН ДЛЯ РАБОТЫ
+    </div>
+  </nav>
+
+  <section class="r-hero">
+    <div class="r-hero-label">// Backend Developer &amp; SysAdmin</div>
+    <h1 class="r-hero-name">ЕГОР<br>ЕВСТИФЕЕВ</h1>
+    <div class="r-hero-title">Backend Developer &amp; System Administrator</div>
+    <p class="r-hero-bio">Студент 4-го курса, специальности «Разработчик Программного Обеспечения».
+    Хорошо и быстро обучаюсь. Каждый день совершенствуюсь и решаю разные задачи по своей специальности.</p>
+    <div class="r-hero-actions">
+      <a href="https://github.com/FGun4ik" target="_blank" class="r-btn-p">GitHub →</a>
+      <a href="#contacts" class="r-btn-s">Связаться</a>
+    </div>
+  </section>
+
+  <div class="r-chips" id="contacts">
+    <a href="mailto:evstifeev.egor@bk.ru" class="r-chip">✉ evstifeev.egor@bk.ru</a>
+    <a href="tel:+79183295999" class="r-chip">📱 +7 918 329 59-99</a>
+    <a href="https://t.me/evst_egor" target="_blank" class="r-chip">✈ @evst_egor</a>
+    <a href="https://github.com/FGun4ik" target="_blank" class="r-chip">⌥ github/FGun4ik</a>
   </div>
 
-  <div class="hero-card">
-    <div class="hero-card-inner">
-      <div class="hero-photo-placeholder">👤</div>
-      <div class="card-status">
-        <div class="status-dot"></div>
-        ОТКРЫТ К ПРЕДЛОЖЕНИЯМ
+  <div class="r-divider"></div>
+
+  <section class="r-section" id="skills">
+    <div class="r-section-label">// 02. stack</div>
+    <h2 class="r-section-title">Навыки</h2>
+    <div class="r-skills-grid">
+      <div class="r-skill-card"><div class="r-skill-icon">⚙️</div><div class="r-skill-title">BACKEND</div><div class="r-tags"><span class="r-tag">Python</span><span class="r-tag">Django</span><span class="r-tag">Golang</span><span class="r-tag">echo</span><span class="r-tag">PHP</span><span class="r-tag">ASP.NET</span></div></div>
+      <div class="r-skill-card"><div class="r-skill-icon">🗄️</div><div class="r-skill-title">БАЗЫ ДАННЫХ</div><div class="r-tags"><span class="r-tag">PostgreSQL</span><span class="r-tag">MySQL</span><span class="r-tag">MS SQL</span><span class="r-tag">SQLAlchemy</span><span class="r-tag">ORM</span></div></div>
+      <div class="r-skill-card"><div class="r-skill-icon">🌐</div><div class="r-skill-title">FRONTEND</div><div class="r-tags"><span class="r-tag">HTML</span><span class="r-tag">CSS</span><span class="r-tag">JavaScript</span><span class="r-tag">React</span></div></div>
+      <div class="r-skill-card"><div class="r-skill-icon">🖥️</div><div class="r-skill-title">СИСАДМИН</div><div class="r-tags"><span class="r-tag">Windows</span><span class="r-tag">Linux</span><span class="r-tag">Сети</span><span class="r-tag">Безопасность</span></div></div>
+      <div class="r-skill-card"><div class="r-skill-icon">🐳</div><div class="r-skill-title">ИНФРАСТРУКТУРА</div><div class="r-tags"><span class="r-tag">Docker</span><span class="r-tag">Git</span><span class="r-tag">GitHub</span><span class="r-tag">Azure</span></div></div>
+      <div class="r-skill-card"><div class="r-skill-icon">📋</div><div class="r-skill-title">ИНСТРУМЕНТЫ</div><div class="r-tags"><span class="r-tag">Jira</span><span class="r-tag">Kaiten</span><span class="r-tag">ООП</span><span class="r-tag">Паттерны</span><span class="r-tag">UML</span></div></div>
+    </div>
+  </section>
+
+  <div class="r-divider"></div>
+
+  <section class="r-section" id="experience">
+    <div class="r-section-label">// 03. experience</div>
+    <h2 class="r-section-title">Опыт работы</h2>
+    <div class="r-exp-list">
+      <div class="r-exp-card">
+        <div class="r-exp-meta"><div class="r-exp-role">Инженер ИТ</div><div class="r-exp-period">Июнь — Август 2024</div></div>
+        <div class="r-exp-company">АНО «ЦРКИ», АНО «Таврида.Арт»</div>
+        <ul class="r-exp-items"><li>Подготовка образовательных заездов</li><li>Техническая поддержка пользователей</li><li>Монтаж сетей</li><li>Участие в разработке корпоративного проекта</li><li>Подготовка фестиваля «ТАВРИДА.АРТ»</li></ul>
       </div>
-      <div class="card-contacts">
-        <div class="card-contact-item">
-          <span>✉</span>
-          <a href="mailto:evstifeev.egor@bk.ru">evstifeev.egor@bk.ru</a>
-        </div>
-        <div class="card-contact-item">
-          <span>📱</span>
-          <a href="tel:+79183295999">+7 918 329 59-99</a>
-        </div>
-        <div class="card-contact-item">
-          <span>✈</span>
-          <a href="https://t.me/evst_egor" target="_blank">@evst_egor</a>
-        </div>
-        <div class="card-contact-item">
-          <span>⌥</span>
-          <a href="https://github.com/FGun4ik" target="_blank">github/FGun4ik</a>
-        </div>
+      <div class="r-exp-card">
+        <div class="r-exp-meta"><div class="r-exp-role">Стажёр</div><div class="r-exp-period">Март 2024</div></div>
+        <div class="r-exp-company">Дирекция ВФМ</div>
+        <ul class="r-exp-items"><li>Подготовка Сириуса к открытию ВФМ в составе команды</li></ul>
+      </div>
+      <div class="r-exp-card" style="border-left-color:#f59e0b">
+        <div class="r-exp-meta"><div class="r-exp-role">Разработчик — 🥉 3 место</div><div class="r-exp-period">Хакатон</div></div>
+        <div class="r-exp-company" style="color:#f59e0b">Кейс РЖД</div>
+        <ul class="r-exp-items"><li>Разработка решения кейса в команде</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="r-divider"></div>
+  <footer class="r-footer">© 2026 Егор Евстифеев &nbsp;·&nbsp; Колледж «IT-TOP» &nbsp;·&nbsp; Сочи</footer>
+</div>
+
+<!-- ===== PAGE 2: VISUAL STUDIO ===== -->
+<div id="page-vs" class="page">
+
+<div class="titlebar">
+  <div class="titlebar-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+  <div class="titlebar-title">&#x1F4BB; Билеты_CPP — Microsoft Visual Studio 2022</div>
+</div>
+<div class="menubar">
+  <div class="menu-item">Файл</div><div class="menu-item">Правка</div><div class="menu-item">Вид</div>
+  <div class="menu-item">Проект</div><div class="menu-item">Сборка</div><div class="menu-item">Отладка</div>
+  <div class="menu-item">Инструменты</div><div class="menu-item">Справка</div>
+</div>
+<div class="toolbar">
+  <button class="toolbar-btn">&#9665;</button><button class="toolbar-btn">&#9655;</button>
+  <div class="toolbar-sep"></div>
+  <button class="toolbar-btn">&#128190;</button><button class="toolbar-btn">&#8617;</button><button class="toolbar-btn">&#8618;</button>
+  <div class="toolbar-sep"></div>
+  <button class="toolbar-btn">&#128269;</button>
+  <div class="toolbar-sep"></div>
+  <button class="run-btn" onclick="buildAndRun()">&#9654; Локальный отладчик Windows</button>
+  <div class="toolbar-sep"></div>
+  <span style="color:#858585;font-size:11px;margin-left:4px">x64 &bull; Debug</span>
+</div>
+<div class="main">
+  <div class="activitybar">
+    <button class="act-btn active">&#128193;</button>
+    <button class="act-btn">&#128269;</button>
+    <button class="act-btn">&#127807;</button>
+    <button class="act-btn">&#128027;</button>
+    <button class="act-btn">&#129329;</button>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-header">Обозреватель решений</div>
+    <div class="sidebar-tree">
+      <div class="tree-folder">&#128194; Решение 'Билеты_CPP'</div>
+      <div class="tree-folder" style="padding-left:24px">&#128193; Билеты_CPP</div>
+      <div class="tree-folder" style="padding-left:36px">&#128193; Исходные файлы</div>
+      <div id="sidebar-files"></div>
+    </div>
+  </div>
+  <div class="editor-area">
+    <div class="tabs-bar" id="tabs-bar"></div>
+    <div class="editor-split">
+      <div class="code-editor">
+        <div class="line-numbers" id="line-numbers"></div>
+        <div class="code-content" id="code-content" onscroll="syncScroll()"></div>
+      </div>
+      <div class="task-panel">
+        <div class="task-header">&#128203; Условие задания</div>
+        <div class="task-body" id="task-body"></div>
+      </div>
+    </div>
+    <div class="bottom-panel">
+      <div class="panel-tabs">
+        <div class="panel-tab active">Вывод</div>
+        <div class="panel-tab">Список ошибок</div>
+        <div class="panel-tab">Терминал</div>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <span class="term-ok">Сборка начата...</span><br>
+        <span class="term-info">&nbsp;&nbsp;1&gt; MSVC 19.38.33134 — x64 Debug</span><br>
+        <span class="term-ok">&nbsp;&nbsp;1&gt; Компиляция успешна — ошибок: 0</span><br>
+        <span class="term-prompt">&#9654;&nbsp;</span>Выберите билет в обозревателе слева
       </div>
     </div>
   </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">// 02. stack</div>
-  <h2 class="section-title">Навыки</h2>
-  <div class="skills-grid">
-    <div class="skill-block">
-      <div class="skill-block-icon">⚙️</div>
-      <div class="skill-block-title">BACKEND</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Django</span>
-        <span class="tag">Golang</span>
-        <span class="tag">echo</span>
-        <span class="tag">PHP</span>
-        <span class="tag">ASP.NET</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-icon">🗄️</div>
-      <div class="skill-block-title">БАЗЫ ДАННЫХ</div>
-      <div class="skill-tags">
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">MS SQL Server</span>
-        <span class="tag">SQLAlchemy ORM</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-icon">🌐</div>
-      <div class="skill-block-title">FRONTEND</div>
-      <div class="skill-tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">React</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-icon">🖥️</div>
-      <div class="skill-block-title">СИСТЕМНОЕ АДМИНИСТРИРОВАНИЕ</div>
-      <div class="skill-tags">
-        <span class="tag tag-purple">Windows</span>
-        <span class="tag tag-purple">Linux</span>
-        <span class="tag tag-purple">Сети</span>
-        <span class="tag tag-purple">Безопасность</span>
-        <span class="tag tag-purple">Периферия</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-icon">🐳</div>
-      <div class="skill-block-title">ИНФРАСТРУКТУРА</div>
-      <div class="skill-tags">
-        <span class="tag">Docker</span>
-        <span class="tag">Git</span>
-        <span class="tag">GitHub</span>
-        <span class="tag">Microsoft Azure</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-icon">📋</div>
-      <div class="skill-block-title">ИНСТРУМЕНТЫ</div>
-      <div class="skill-tags">
-        <span class="tag tag-purple">Jira</span>
-        <span class="tag tag-purple">Kaiten</span>
-        <span class="tag tag-purple">ООП</span>
-        <span class="tag tag-purple">Паттерны</span>
-        <span class="tag tag-purple">UML</span>
-      </div>
-    </div>
+</div>
+<div class="statusbar"><button class="back-btn" onclick="showPage('resume')">← Резюме</button>
+  <div class="status-item">&#128256; main</div>
+  <div class="status-item">&#9889; 0 ошибок</div>
+  <div class="status-item">&#9888; 0 предупреждений</div>
+  <div class="status-right">
+    <div class="status-item" id="status-pos">Стр 1, Стб 1</div>
+    <div class="status-item">Пробелы: 4</div>
+    <div class="status-item">UTF-8</div>
+    <div class="status-item">C++</div>
+    <div class="status-item">CRLF</div>
   </div>
-</section>
+</div>
+<script>
+const T=[
+{num:1,title:"Модуль числа",task:["Программа получает на вход 3 вещественных числа.","Вывести наибольший модуль числа.","Вывести сумму модулей этих чисел.","Вывести модуль суммы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cmath&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> a, b, c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    <span class="cmt">// 1. Наибольший модуль</span>
+    <span class="type">double</span> maxAbs = <span class="fn">max</span>({<span class="fn">abs</span>(a), <span class="fn">abs</span>(b), <span class="fn">abs</span>(c)});
+    cout &lt;&lt; <span class="str">"Max |x|: "</span> &lt;&lt; maxAbs &lt;&lt; endl;
+    <span class="cmt">// 2. Сумма модулей</span>
+    cout &lt;&lt; <span class="str">"Sum |x|: "</span> &lt;&lt; <span class="fn">abs</span>(a)+<span class="fn">abs</span>(b)+<span class="fn">abs</span>(c) &lt;&lt; endl;
+    <span class="cmt">// 3. Модуль суммы</span>
+    cout &lt;&lt; <span class="str">"|Sum|: "</span> &lt;&lt; <span class="fn">abs</span>(a+b+c) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:2,title:"Условие прекращения",task:["Программа запрашивает числа и считает произведение.","После ввода отрицательного числа — прекращает ввод.","Вывести произведение чисел (без отрицательного).","Вывести количество чисел (без отрицательного).","Вывести наибольшее из введённых чисел."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> x, product = <span class="num">1</span>, maxVal;
+    <span class="type">int</span> count = <span class="num">0</span>;
+    <span class="type">bool</span> first = <span class="kw">true</span>;
+    <span class="kw">while</span> (<span class="kw">true</span>) {
+        cin &gt;&gt; x;
+        <span class="kw">if</span> (x &lt; <span class="num">0</span>) <span class="kw">break</span>;
+        product *= x;
+        count++;
+        <span class="kw">if</span> (first || x &gt; maxVal) { maxVal = x; first = <span class="kw">false</span>; }
+    }
+    cout &lt;&lt; <span class="str">"Product: "</span> &lt;&lt; product &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Count: "</span>   &lt;&lt; count   &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Max: "</span>     &lt;&lt; maxVal  &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:3,title:"Рамки подсчёта",task:["Программа запрашивает 2 целых числа: начало и конец диапазона.","Пользователь может вводить начало и конец в любом порядке.","Вывести все целые числа в диапазоне (включая границы).","Посчитать и вывести сумму всех чисел в диапазоне."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    <span class="kw">if</span> (a &gt; b) <span class="fn">swap</span>(a, b);
+    <span class="type">int</span> sum = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = a; i &lt;= b; i++) {
+        cout &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+        sum += i;
+    }
+    cout &lt;&lt; endl &lt;&lt; <span class="str">"Sum: "</span> &lt;&lt; sum &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:4,title:"Меню",task:["Вывести интерактивное меню с выбором:","1. Определить наименьшее из 3 чисел.","2. Вывести модуль числа.","3. Выход.","Программа работает до выбора пункта «Выход»."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1. Минимум из 3
+2. Модуль
+3. Выход
+"</span>;
+        cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) {
+            <span class="type">double</span> a,b,c; cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+            cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; <span class="fn">min</span>({a,b,c}) &lt;&lt; endl;
+        } <span class="kw">else if</span> (choice == <span class="num">2</span>) {
+            <span class="type">double</span> x; cin &gt;&gt; x;
+            cout &lt;&lt; <span class="str">"|x| = "</span> &lt;&lt; <span class="fn">abs</span>(x) &lt;&lt; endl;
+        }
+    } <span class="kw">while</span> (choice != <span class="num">3</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:5,title:"Степень числа",task:["Написать функцию вычисления степени через цикл.","Функция принимает основание и степень.","Функция возвращает результат.","Программа демонстрирует работу функции."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">double</span> <span class="fn">power</span>(<span class="type">double</span> base, <span class="type">int</span> exp) {
+    <span class="type">double</span> result = <span class="num">1</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; exp; i++) result *= base;
+    <span class="kw">return</span> result;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> base; <span class="type">int</span> exp;
+    cin &gt;&gt; base &gt;&gt; exp;
+    cout &lt;&lt; <span class="fn">power</span>(base, exp) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:6,title:"Задание на 7 элементов",task:["Создать массив float из 7 элементов, заполнить с клавиатуры.","Вывести все положительные элементы.","Вывести все целые элементы.","Вывести только нецелые отрицательные элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">float</span> a[<span class="num">7</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) cin &gt;&gt; a[i];
+    <span class="cmt">// 1. Положительные</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] &gt; <span class="num">0</span>) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="cmt">// 2. Целые (дробная часть == 0)</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] == (<span class="type">int</span>)a[i]) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="cmt">// 3. Нецелые отрицательные</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] &lt; <span class="num">0</span> &amp;&amp; a[i] != (<span class="type">int</span>)a[i]) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:7,title:"Задание на 5 элементов",task:["Программа получает 5 вещественных чисел.","Вывести весь массив.","Вывести среднее арифметическое.","Вывести максимальный и минимальный элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> a[<span class="num">5</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cin &gt;&gt; a[i];
+    <span class="type">double</span> sum = <span class="num">0</span>, mn = a[<span class="num">0</span>], mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+        sum += a[i];
+        <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+        <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    }
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; <span class="str">"
+Avg: "</span> &lt;&lt; sum/<span class="num">5</span> &lt;&lt; <span class="str">"
+Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:8,title:"Двумерный массив 3×3",task:["Создать двумерный массив 3×3 со случайными числами.","Вывести в формате матрицы.","Посчитать и вывести сумму элементов.","Найти максимальный и минимальный элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">3</span>][<span class="num">3</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++)
+            m[i][j] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> sum = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) sum += m[i][j];
+    cout &lt;&lt; <span class="str">"Sum: "</span> &lt;&lt; sum &lt;&lt; endl;
+    <span class="type">int</span> mn = m[<span class="num">0</span>][<span class="num">0</span>], mx = m[<span class="num">0</span>][<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) {
+            <span class="kw">if</span> (m[i][j] &lt; mn) mn = m[i][j];
+            <span class="kw">if</span> (m[i][j] &gt; mx) mx = m[i][j];
+        }
+    cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:9,title:"Массив и функции",task:["Создать массив из 10 случайных элементов.","Функция вывода массива на экран.","Функция возврата максимального значения.","Функция возврата минимального значения."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">void</span> <span class="fn">printArr</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+}
+<span class="type">int</span> <span class="fn">getMax</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="type">int</span> mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    <span class="kw">return</span> mx;
+}
+<span class="type">int</span> <span class="fn">getMin</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="type">int</span> mn = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+    <span class="kw">return</span> mn;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> a[<span class="num">10</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="fn">printArr</span>(a, <span class="num">10</span>);
+    cout &lt;&lt; <span class="str">"Max: "</span> &lt;&lt; <span class="fn">getMax</span>(a, <span class="num">10</span>) &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; <span class="fn">getMin</span>(a, <span class="num">10</span>) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:10,title:"Строка, поиск в 2D массиве",task:["Создать массив 6×6 со случайными числами, вывести.","Запросить номер строки и вывести её.","Запросить число и найти все элементы с таким значением.","Вывести значение и координаты найденных элементов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">6</span>][<span class="num">6</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) m[i][j] = <span class="fn">rand</span>() % <span class="num">50</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> row; cin &gt;&gt; row;
+    <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) cout &lt;&lt; m[row][j] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="type">int</span> val; cin &gt;&gt; val;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++)
+            <span class="kw">if</span> (m[i][j] == val) cout &lt;&lt; <span class="str">"["</span> &lt;&lt; i &lt;&lt; <span class="str">"]["</span> &lt;&lt; j &lt;&lt; <span class="str">"] = "</span> &lt;&lt; val &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:11,title:"Массив с выбором заполнения",task:["Программа получает размер будущего массива.","Выбор: заполнить подряд (с 1), случайно или с клавиатуры.","Программа демонстрирует массив с выбранным заполнением."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> choice; cin &gt;&gt; choice;
+    <span class="kw">if</span> (choice == <span class="num">1</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = i + <span class="num">1</span>;
+    <span class="kw">else if</span> (choice == <span class="num">2</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">else</span>
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:12,title:"Сортировка",task:["Пользователь вводит размер и элементы массива.","Вывести массив по возрастанию.","Вывести массив по убыванию.","Предоставить выбор направления сортировки."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;algorithm&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    <span class="type">int</span> choice; cin &gt;&gt; choice; <span class="cmt">// 1 - возрастание, 2 - убывание</span>
+    <span class="kw">if</span> (choice == <span class="num">1</span>) <span class="fn">sort</span>(a, a+n);
+    <span class="kw">else</span> <span class="fn">sort</span>(a, a+n, greater&lt;<span class="type">int</span>&gt;());
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:13,title:"Динамический с повторением",task:["Пользователь вводит размер, массив заполняется случайными числами.","Вывести массив, сумму и среднее арифметическое.","Массив пересоздаётся пока размер > 0.","Программа завершается при вводе размера ≤ 0."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n;
+    <span class="kw">do</span> {
+        cin &gt;&gt; n;
+        <span class="kw">if</span> (n &lt;= <span class="num">0</span>) <span class="kw">break</span>;
+        <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+        <span class="type">double</span> sum = <span class="num">0</span>;
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) { a[i] = <span class="fn">rand</span>()%<span class="num">100</span>; sum += a[i]; }
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+        cout &lt;&lt; <span class="str">"
+Sum: "</span> &lt;&lt; sum &lt;&lt; <span class="str">" Avg: "</span> &lt;&lt; sum/n &lt;&lt; endl;
+        <span class="kw">delete</span>[] a;
+    } <span class="kw">while</span> (n &gt; <span class="num">0</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:14,title:"Одинаковые элементы",task:["Пользователь вводит размер и элементы массива.","Вывести весь массив, наибольший и наименьший.","Найти элементы с одинаковыми значениями.","Вывести значения и порядковые номера дубликатов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> mn, mx;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    mn = mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) {
+        cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+        <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+        <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    }
+    cout &lt;&lt; <span class="str">"
+Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = i+<span class="num">1</span>; j &lt; n; j++)
+            <span class="kw">if</span> (a[i] == a[j])
+                cout &lt;&lt; <span class="str">"Value "</span> &lt;&lt; a[i] &lt;&lt; <span class="str">" at ["</span> &lt;&lt; i &lt;&lt; <span class="str">"] and ["</span> &lt;&lt; j &lt;&lt; <span class="str">"]"</span> &lt;&lt; endl;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:15,title:"Двумерный 7×7, диагональ",task:["Создать матрицу 7×7 со случайными числами, вывести.","Найти и вывести сумму элементов главной диагонали.","Пользователь вводит координаты элемента.","Умножить элемент на 2, вывести обновлённую матрицу."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">7</span>][<span class="num">7</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) m[i][j] = <span class="fn">rand</span>() % <span class="num">50</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> diag = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) diag += m[i][i];
+    cout &lt;&lt; <span class="str">"Diagonal sum: "</span> &lt;&lt; diag &lt;&lt; endl;
+    <span class="type">int</span> r, c; cin &gt;&gt; r &gt;&gt; c;
+    m[r][c] *= <span class="num">2</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:16,title:"Функции с параметрами",task:["Функция: умножить 2 числа и вывести результат.","Функция: принять 2 адреса, вывести значения по ним.","Функция: принять 2 переменные, вывести их адреса.","Программа демонстрирует все три функции."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="cmt">// 1. Умножение и вывод</span>
+<span class="type">void</span> <span class="fn">multiply</span>(<span class="type">int</span> a, <span class="type">int</span> b) { cout &lt;&lt; a*b &lt;&lt; endl; }
+<span class="cmt">// 2. Вывод значений по адресам</span>
+<span class="type">void</span> <span class="fn">printByAddr</span>(<span class="type">int</span>* p1, <span class="type">int</span>* p2) { cout &lt;&lt; *p1 &lt;&lt; <span class="str">" "</span> &lt;&lt; *p2 &lt;&lt; endl; }
+<span class="cmt">// 3. Вывод адресов переменных</span>
+<span class="type">void</span> <span class="fn">printAddresses</span>(<span class="type">int</span> a, <span class="type">int</span> b) { cout &lt;&lt; &amp;a &lt;&lt; <span class="str">" "</span> &lt;&lt; &amp;b &lt;&lt; endl; }
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> x = <span class="num">3</span>, y = <span class="num">4</span>;
+    <span class="fn">multiply</span>(x, y);
+    <span class="fn">printByAddr</span>(&amp;x, &amp;y);
+    <span class="fn">printAddresses</span>(x, y);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:17,title:"Перегрузка функций",task:["Перегруженная функция process:","• 2 целых → вывести диапазон чисел между ними.","• Вещественное → вернуть часть до точки (1.6 → 1).","• Массив целых → вернуть наименьший элемент."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="cmt">// 1. Диапазон целых чисел</span>
+<span class="type">void</span> <span class="fn">process</span>(<span class="type">int</span> a, <span class="type">int</span> b) {
+    <span class="kw">if</span> (a &gt; b) <span class="fn">swap</span>(a, b);
+    <span class="kw">for</span> (<span class="type">int</span> i = a; i &lt;= b; i++) cout &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+}
+<span class="cmt">// 2. Часть до точки</span>
+<span class="type">double</span> <span class="fn">process</span>(<span class="type">double</span> x) { <span class="kw">return</span> (<span class="type">int</span>)x; }
+<span class="cmt">// 3. Минимум массива</span>
+<span class="type">int</span> <span class="fn">process</span>(<span class="type">int</span> a[], <span class="type">int</span> n) {
+    <span class="type">int</span> mn = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+    <span class="kw">return</span> mn;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">process</span>(<span class="num">2</span>, <span class="num">7</span>);
+    cout &lt;&lt; <span class="fn">process</span>(<span class="num">3.8</span>) &lt;&lt; endl;
+    <span class="type">int</span> a[] = {<span class="num">5</span>, <span class="num">1</span>, <span class="num">8</span>, <span class="num">2</span>};
+    cout &lt;&lt; <span class="fn">process</span>(a, <span class="num">4</span>) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:18,title:"Удаление элемента из массива",task:["Пользователь вводит размер, массив заполняется случайно.","Запросить индекс элемента для удаления.","Удалить элемент из массива.","Повторять до тех пор, пока массив не опустеет."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">while</span> (n &gt; <span class="num">0</span>) {
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>; cout &lt;&lt; endl;
+        <span class="type">int</span> idx; cin &gt;&gt; idx;
+        <span class="kw">for</span> (<span class="type">int</span> i = idx; i &lt; n-<span class="num">1</span>; i++) a[i] = a[i+<span class="num">1</span>];
+        n--;
+    }
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:19,title:"Перевёртыш 2D массива",task:["Пользователь вводит размер двумерного массива.","Выбирает: заполнить процедурно или с клавиатуры.","Вывести массив на экран.","Вывести массив в обратном порядке (строки и столбцы)."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>** m = <span class="kw">new</span> <span class="type">int</span>*[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) m[i] = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> choice; cin &gt;&gt; choice;
+    <span class="kw">if</span> (choice == <span class="num">1</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+            <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) m[i][j] = i*n + j + <span class="num">1</span>;
+    <span class="kw">else</span>
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+            <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) cin &gt;&gt; m[i][j];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) { <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>; cout &lt;&lt; endl; }
+    <span class="kw">for</span> (<span class="type">int</span> i = n-<span class="num">1</span>; i &gt;= <span class="num">0</span>; i--) { <span class="kw">for</span> (<span class="type">int</span> j = n-<span class="num">1</span>; j &gt;= <span class="num">0</span>; j--) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>; cout &lt;&lt; endl; }
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) <span class="kw">delete</span>[] m[i];
+    <span class="kw">delete</span>[] m;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:20,title:"Кассовый аппарат",task:["Меню кассового аппарата:","1. Новая продажа (ввести сумму).","2. Вывод списка продаж.","3. Отменить последнюю продажу.","0. Выход."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">double</span>&gt; sales;
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Новая продажа 2.Список 3.Отменить последнюю 0.Выход
+"</span>;
+        cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="type">double</span> s; cin &gt;&gt; s; sales.<span class="fn">push_back</span>(s); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>)
+            <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)sales.<span class="fn">size</span>(); i++)
+                cout &lt;&lt; i+<span class="num">1</span> &lt;&lt; <span class="str">": "</span> &lt;&lt; sales[i] &lt;&lt; endl;
+        <span class="kw">else if</span> (choice == <span class="num">3</span> &amp;&amp; !sales.<span class="fn">empty</span>()) sales.<span class="fn">pop_back</span>();
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:21,title:"Запись делителей в файл",task:["Запросить число с клавиатуры.","Если число ≤ 1 — вывести ошибку и завершить.","Найти все делители введённого числа.","Записать найденные делители в файл del.txt."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="kw">if</span> (n &lt;= <span class="num">1</span>) { cout &lt;&lt; <span class="str">"Ошибка"</span>; <span class="kw">return</span> <span class="num">1</span>; }
+    ofstream f(<span class="str">"del.txt"</span>);
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt;= n; i++)
+        <span class="kw">if</span> (n % i == <span class="num">0</span>) f &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+    f.<span class="fn">close</span>();
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:22,title:"Чтение из файла",task:["Создать файл с текстом на русском и английском.","Считать и вывести содержимое файла.","Вывести общее количество символов.","Определить количество символов кириллицы и латиницы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    ofstream out(<span class="str">"text.txt"</span>);
+    out &lt;&lt; <span class="str">"Hello everybody! This is my text file.
+"</span>;
+    out &lt;&lt; <span class="str">"Привет всем! Это мой текстовый файл."</span>;
+    out.<span class="fn">close</span>();
+    ifstream f(<span class="str">"text.txt"</span>);
+    string line, all = <span class="str">""</span>;
+    <span class="kw">while</span> (<span class="fn">getline</span>(f, line)) { cout &lt;&lt; line &lt;&lt; endl; all += line; }
+    f.<span class="fn">close</span>();
+    cout &lt;&lt; <span class="str">"Total chars: "</span> &lt;&lt; all.<span class="fn">size</span>() &lt;&lt; endl;
+    <span class="type">int</span> cyr = <span class="num">0</span>, lat = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">unsigned char</span> c : all) {
+        <span class="kw">if</span> ((c &gt;= <span class="str">'A'</span> &amp;&amp; c &lt;= <span class="str">'Z'</span>) || (c &gt;= <span class="str">'a'</span> &amp;&amp; c &lt;= <span class="str">'z'</span>)) lat++;
+        <span class="kw">else if</span> (c &gt;= <span class="num">0xC0</span>) cyr++;
+    }
+    cout &lt;&lt; <span class="str">"Latin: "</span> &lt;&lt; lat &lt;&lt; <span class="str">" Cyrillic: "</span> &lt;&lt; cyr &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:23,title:"Работа со строкой (поиск и замена)",task:["Пользователь вводит строку.","Запросить символ, вывести позицию первого вхождения.","Вывести все вхождения.","Позволить выбрать символ замены или не менять."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    string s;
+    <span class="fn">getline</span>(cin, s);
+    <span class="type">char</span> ch; cin &gt;&gt; ch;
+    <span class="cmt">// 1. Первое вхождение</span>
+    <span class="type">size_t</span> pos = s.<span class="fn">find</span>(ch);
+    <span class="kw">if</span> (pos != string::npos) cout &lt;&lt; <span class="str">"First: "</span> &lt;&lt; pos &lt;&lt; endl;
+    <span class="cmt">// 2. Все вхождения</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)s.<span class="fn">size</span>(); i++)
+        <span class="kw">if</span> (s[i] == ch) cout &lt;&lt; <span class="str">"Found at: "</span> &lt;&lt; i &lt;&lt; endl;
+    <span class="cmt">// 3. Замена</span>
+    <span class="type">char</span> rep; cin &gt;&gt; rep;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)s.<span class="fn">size</span>(); i++)
+        <span class="kw">if</span> (s[i] == ch) s[i] = rep;
+    cout &lt;&lt; s &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:24,title:"Строка: цифры, пробелы, символы",task:["Пользователь вводит строку с пробелами на английском.","Вывести количество цифр в строке.","Вывести количество пробелов.","Вывести первый и последний символы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    string s;
+    <span class="fn">getline</span>(cin, s);
+    <span class="type">int</span> digits = <span class="num">0</span>, spaces = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">char</span> c : s) {
+        <span class="kw">if</span> (c &gt;= <span class="str">'0'</span> &amp;&amp; c &lt;= <span class="str">'9'</span>) digits++;
+        <span class="kw">if</span> (c == <span class="str">' '</span>) spaces++;
+    }
+    cout &lt;&lt; <span class="str">"Digits: "</span>  &lt;&lt; digits &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Spaces: "</span>  &lt;&lt; spaces &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"First: "</span>   &lt;&lt; s.<span class="fn">front</span>() &lt;&lt; <span class="str">" Last: "</span> &lt;&lt; s.<span class="fn">back</span>() &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:25,title:"Точка в пространстве (struct)",task:["Пользователь вводит имя и координаты точки.","Программа выводит информацию о точке.","Ввод продолжается пока не введено '!'."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="kw">struct</span> <span class="type">Point</span> {
+    string name;
+    <span class="type">double</span> x, y;
+};
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Point</span> p;
+    <span class="kw">do</span> {
+        cin &gt;&gt; p.name;
+        <span class="kw">if</span> (p.name == <span class="str">"!"</span>) <span class="kw">break</span>;
+        cin &gt;&gt; p.x &gt;&gt; p.y;
+        cout &lt;&lt; <span class="str">"Point "</span> &lt;&lt; p.name &lt;&lt; <span class="str">": ("</span> &lt;&lt; p.x &lt;&lt; <span class="str">", "</span> &lt;&lt; p.y &lt;&lt; <span class="str">")"</span> &lt;&lt; endl;
+    } <span class="kw">while</span> (p.name != <span class="str">"!"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`}
+];;
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">// 03. experience</div>
-  <h2 class="section-title">Опыт работы</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">Июнь — Август 2024</div>
-      <div class="timeline-title">Инженер ИТ</div>
-      <div class="timeline-company">АНО «ЦРКИ», АНО «Таврида.Арт»</div>
-      <ul class="timeline-list">
-        <li>Подготовка образовательных заездов</li>
-        <li>Техническая поддержка пользователей</li>
-        <li>Монтаж сетей</li>
-        <li>Участие в разработке корпоративного проекта</li>
-        <li>Подготовка фестиваля «ТАВРИДА.АРТ»</li>
-      </ul>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Март 2024</div>
-      <div class="timeline-title">Стажёр</div>
-      <div class="timeline-company">Дирекция ВФМ</div>
-      <ul class="timeline-list">
-        <li>Подготовка Сириуса к открытию ВФМ в составе команды</li>
-      </ul>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Хакатон</div>
-      <div class="timeline-title">Разработчик — 🥉 3 место</div>
-      <div class="timeline-company">Кейс РЖД</div>
-      <ul class="timeline-list">
-        <li>Разработка решения кейса в команде</li>
-      </ul>
-    </div>
-  </div>
-</section>
+let active=0, openTabs=[0];
 
-<!-- CONTACTS -->
-<section id="contacts">
-  <div class="section-label">// 04. contact</div>
-  <h2 class="section-title">Контакты</h2>
-  <div class="contacts-grid">
-    <a href="mailto:evstifeev.egor@bk.ru" class="contact-card">
-      <div class="contact-icon">✉️</div>
-      <div class="contact-label">Email</div>
-      <div class="contact-value">evstifeev.egor@bk.ru</div>
-    </a>
-    <a href="tel:+79183295999" class="contact-card">
-      <div class="contact-icon">📱</div>
-      <div class="contact-label">Телефон</div>
-      <div class="contact-value">+7 918 329 59-99</div>
-    </a>
-    <a href="https://t.me/evst_egor" target="_blank" class="contact-card">
-      <div class="contact-icon">✈️</div>
-      <div class="contact-label">Telegram</div>
-      <div class="contact-value">@evst_egor</div>
-    </a>
-    <a href="https://github.com/FGun4ik" target="_blank" class="contact-card">
-      <div class="contact-icon">⌥</div>
-      <div class="contact-label">GitHub</div>
-      <div class="contact-value">github.com/FGun4ik</div>
-    </a>
-  </div>
-</section>
+function buildSidebar(){
+  const c=document.getElementById('sidebar-files');
+  T.forEach((t,i)=>{
+    const el=document.createElement('div');
+    el.className='tree-file'+(i===0?' active':'');
+    el.id='sf-'+i;
+    el.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="ticket-num">&#8470;${t.num}</span>`;
+    el.onclick=()=>openTicket(i);
+    c.appendChild(el);
+  });
+}
 
-<!-- FOOTER -->
-<footer>
-  <span>© 2026 Егор Евстифеев</span>
-  <span>Колледж «IT-TOP» · Сочи</span>
-</footer>
+function buildTabs(){
+  const bar=document.getElementById('tabs-bar');
+  bar.innerHTML='';
+  openTabs.forEach(idx=>{
+    const t=T[idx];
+    const tab=document.createElement('div');
+    tab.className='tab'+(idx===active?' active':'');
+    tab.id='tab-'+idx;
+    tab.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="tab-close" onclick="closeTab(event,${idx})">&#215;</span>`;
+    tab.onclick=()=>openTicket(idx);
+    bar.appendChild(tab);
+  });
+}
+
+function renderCode(idx){
+  const t=T[idx];
+  const lines=t.code.split('\n');
+  document.getElementById('line-numbers').innerHTML=lines.map((_,i)=>i+1).join('\n');
+  document.getElementById('code-content').innerHTML=t.code;
+  document.getElementById('status-pos').textContent=`Стр 1, Стб 1 | ${lines.length} строк`;
+}
+
+function renderTask(idx){
+  const t=T[idx];
+  document.getElementById('task-body').innerHTML=
+    `<div class="task-title">Билет &#8470;${t.num} &mdash; ${t.title}</div>`+
+    t.task.map(item=>`<div class="task-item"><span class="task-bullet">&#9657;</span><span>${item}</span></div>`).join('');
+}
+
+function openTicket(idx){
+  active=idx;
+  if(!openTabs.includes(idx)) openTabs.push(idx);
+  document.querySelectorAll('.tree-file').forEach(el=>el.classList.remove('active'));
+  const sf=document.getElementById('sf-'+idx); if(sf) sf.classList.add('active');
+  buildTabs(); renderCode(idx); renderTask(idx); updateTerm(idx);
+}
+
+function closeTab(e,idx){
+  e.stopPropagation();
+  openTabs=openTabs.filter(t=>t!==idx);
+  if(!openTabs.length) openTabs=[0];
+  if(active===idx) active=openTabs[openTabs.length-1];
+  buildTabs(); renderCode(active); renderTask(active);
+}
+
+function updateTerm(idx){
+  const t=T[idx];
+  const name=`билет_${String(t.num).padStart(2,'0')}.cpp`;
+  document.getElementById('terminal-body').innerHTML=
+    `<span class="term-ok">Сборка начата...</span><br><span class="term-info">&nbsp;&nbsp;1&gt; MSVC 19.38 &mdash; x64 Debug</span><br><span class="term-info">&nbsp;&nbsp;1&gt; Компиляция: ${name}</span><br><span class="term-ok">&nbsp;&nbsp;1&gt; ${name} &mdash; ошибок: 0</span><br><span class="term-ok">========== Сборка: 1 успешно, 0 ошибок ==========</span>`;
+}
+
+function buildAndRun(){ updateTerm(active); }
+function syncScroll(){ document.getElementById('line-numbers').scrollTop=document.getElementById('code-content').scrollTop; }
+
+buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
+</script>
+
+</div>
 
 <script>
-  // Animate timeline on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 150);
-      }
-    });
-  }, { threshold: 0.2 });
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  if (name === 'vs' && !vsInited) { initVS(); vsInited = true; }
+}
 
-  document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+let vsInited = false;
+function initVS() {
+  buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
+}
+</script>
+<script>
+
+const T=[
+{num:1,title:"Модуль числа",task:["Программа получает на вход 3 вещественных числа.","Вывести наибольший модуль числа.","Вывести сумму модулей этих чисел.","Вывести модуль суммы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cmath&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> a, b, c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    <span class="cmt">// 1. Наибольший модуль</span>
+    <span class="type">double</span> maxAbs = <span class="fn">max</span>({<span class="fn">abs</span>(a), <span class="fn">abs</span>(b), <span class="fn">abs</span>(c)});
+    cout &lt;&lt; <span class="str">"Max |x|: "</span> &lt;&lt; maxAbs &lt;&lt; endl;
+    <span class="cmt">// 2. Сумма модулей</span>
+    cout &lt;&lt; <span class="str">"Sum |x|: "</span> &lt;&lt; <span class="fn">abs</span>(a)+<span class="fn">abs</span>(b)+<span class="fn">abs</span>(c) &lt;&lt; endl;
+    <span class="cmt">// 3. Модуль суммы</span>
+    cout &lt;&lt; <span class="str">"|Sum|: "</span> &lt;&lt; <span class="fn">abs</span>(a+b+c) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:2,title:"Условие прекращения",task:["Программа запрашивает числа и считает произведение.","После ввода отрицательного числа — прекращает ввод.","Вывести произведение чисел (без отрицательного).","Вывести количество чисел (без отрицательного).","Вывести наибольшее из введённых чисел."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> x, product = <span class="num">1</span>, maxVal;
+    <span class="type">int</span> count = <span class="num">0</span>;
+    <span class="type">bool</span> first = <span class="kw">true</span>;
+    <span class="kw">while</span> (<span class="kw">true</span>) {
+        cin &gt;&gt; x;
+        <span class="kw">if</span> (x &lt; <span class="num">0</span>) <span class="kw">break</span>;
+        product *= x;
+        count++;
+        <span class="kw">if</span> (first || x &gt; maxVal) { maxVal = x; first = <span class="kw">false</span>; }
+    }
+    cout &lt;&lt; <span class="str">"Product: "</span> &lt;&lt; product &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Count: "</span>   &lt;&lt; count   &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Max: "</span>     &lt;&lt; maxVal  &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:3,title:"Рамки подсчёта",task:["Программа запрашивает 2 целых числа: начало и конец диапазона.","Пользователь может вводить начало и конец в любом порядке.","Вывести все целые числа в диапазоне (включая границы).","Посчитать и вывести сумму всех чисел в диапазоне."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    <span class="kw">if</span> (a &gt; b) <span class="fn">swap</span>(a, b);
+    <span class="type">int</span> sum = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = a; i &lt;= b; i++) {
+        cout &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+        sum += i;
+    }
+    cout &lt;&lt; endl &lt;&lt; <span class="str">"Sum: "</span> &lt;&lt; sum &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:4,title:"Меню",task:["Вывести интерактивное меню с выбором:","1. Определить наименьшее из 3 чисел.","2. Вывести модуль числа.","3. Выход.","Программа работает до выбора пункта «Выход»."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1. Минимум из 3
+2. Модуль
+3. Выход
+"</span>;
+        cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) {
+            <span class="type">double</span> a,b,c; cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+            cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; <span class="fn">min</span>({a,b,c}) &lt;&lt; endl;
+        } <span class="kw">else if</span> (choice == <span class="num">2</span>) {
+            <span class="type">double</span> x; cin &gt;&gt; x;
+            cout &lt;&lt; <span class="str">"|x| = "</span> &lt;&lt; <span class="fn">abs</span>(x) &lt;&lt; endl;
+        }
+    } <span class="kw">while</span> (choice != <span class="num">3</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:5,title:"Степень числа",task:["Написать функцию вычисления степени через цикл.","Функция принимает основание и степень.","Функция возвращает результат.","Программа демонстрирует работу функции."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">double</span> <span class="fn">power</span>(<span class="type">double</span> base, <span class="type">int</span> exp) {
+    <span class="type">double</span> result = <span class="num">1</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; exp; i++) result *= base;
+    <span class="kw">return</span> result;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> base; <span class="type">int</span> exp;
+    cin &gt;&gt; base &gt;&gt; exp;
+    cout &lt;&lt; <span class="fn">power</span>(base, exp) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:6,title:"Задание на 7 элементов",task:["Создать массив float из 7 элементов, заполнить с клавиатуры.","Вывести все положительные элементы.","Вывести все целые элементы.","Вывести только нецелые отрицательные элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">float</span> a[<span class="num">7</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) cin &gt;&gt; a[i];
+    <span class="cmt">// 1. Положительные</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] &gt; <span class="num">0</span>) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="cmt">// 2. Целые (дробная часть == 0)</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] == (<span class="type">int</span>)a[i]) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="cmt">// 3. Нецелые отрицательные</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) <span class="kw">if</span> (a[i] &lt; <span class="num">0</span> &amp;&amp; a[i] != (<span class="type">int</span>)a[i]) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:7,title:"Задание на 5 элементов",task:["Программа получает 5 вещественных чисел.","Вывести весь массив.","Вывести среднее арифметическое.","Вывести максимальный и минимальный элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> a[<span class="num">5</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cin &gt;&gt; a[i];
+    <span class="type">double</span> sum = <span class="num">0</span>, mn = a[<span class="num">0</span>], mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+        sum += a[i];
+        <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+        <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    }
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; <span class="str">"
+Avg: "</span> &lt;&lt; sum/<span class="num">5</span> &lt;&lt; <span class="str">"
+Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:8,title:"Двумерный массив 3×3",task:["Создать двумерный массив 3×3 со случайными числами.","Вывести в формате матрицы.","Посчитать и вывести сумму элементов.","Найти максимальный и минимальный элементы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">3</span>][<span class="num">3</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++)
+            m[i][j] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> sum = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) sum += m[i][j];
+    cout &lt;&lt; <span class="str">"Sum: "</span> &lt;&lt; sum &lt;&lt; endl;
+    <span class="type">int</span> mn = m[<span class="num">0</span>][<span class="num">0</span>], mx = m[<span class="num">0</span>][<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) {
+            <span class="kw">if</span> (m[i][j] &lt; mn) mn = m[i][j];
+            <span class="kw">if</span> (m[i][j] &gt; mx) mx = m[i][j];
+        }
+    cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:9,title:"Массив и функции",task:["Создать массив из 10 случайных элементов.","Функция вывода массива на экран.","Функция возврата максимального значения.","Функция возврата минимального значения."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">void</span> <span class="fn">printArr</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+}
+<span class="type">int</span> <span class="fn">getMax</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="type">int</span> mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    <span class="kw">return</span> mx;
+}
+<span class="type">int</span> <span class="fn">getMin</span>(<span class="type">int</span>* a, <span class="type">int</span> n) {
+    <span class="type">int</span> mn = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+    <span class="kw">return</span> mn;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> a[<span class="num">10</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="fn">printArr</span>(a, <span class="num">10</span>);
+    cout &lt;&lt; <span class="str">"Max: "</span> &lt;&lt; <span class="fn">getMax</span>(a, <span class="num">10</span>) &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Min: "</span> &lt;&lt; <span class="fn">getMin</span>(a, <span class="num">10</span>) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:10,title:"Строка, поиск в 2D массиве",task:["Создать массив 6×6 со случайными числами, вывести.","Запросить номер строки и вывести её.","Запросить число и найти все элементы с таким значением.","Вывести значение и координаты найденных элементов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">6</span>][<span class="num">6</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) m[i][j] = <span class="fn">rand</span>() % <span class="num">50</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> row; cin &gt;&gt; row;
+    <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++) cout &lt;&lt; m[row][j] &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+    <span class="type">int</span> val; cin &gt;&gt; val;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">6</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">6</span>; j++)
+            <span class="kw">if</span> (m[i][j] == val) cout &lt;&lt; <span class="str">"["</span> &lt;&lt; i &lt;&lt; <span class="str">"]["</span> &lt;&lt; j &lt;&lt; <span class="str">"] = "</span> &lt;&lt; val &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:11,title:"Массив с выбором заполнения",task:["Программа получает размер будущего массива.","Выбор: заполнить подряд (с 1), случайно или с клавиатуры.","Программа демонстрирует массив с выбранным заполнением."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> choice; cin &gt;&gt; choice;
+    <span class="kw">if</span> (choice == <span class="num">1</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = i + <span class="num">1</span>;
+    <span class="kw">else if</span> (choice == <span class="num">2</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">else</span>
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:12,title:"Сортировка",task:["Пользователь вводит размер и элементы массива.","Вывести массив по возрастанию.","Вывести массив по убыванию.","Предоставить выбор направления сортировки."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;algorithm&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    <span class="type">int</span> choice; cin &gt;&gt; choice; <span class="cmt">// 1 - возрастание, 2 - убывание</span>
+    <span class="kw">if</span> (choice == <span class="num">1</span>) <span class="fn">sort</span>(a, a+n);
+    <span class="kw">else</span> <span class="fn">sort</span>(a, a+n, greater&lt;<span class="type">int</span>&gt;());
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:13,title:"Динамический с повторением",task:["Пользователь вводит размер, массив заполняется случайными числами.","Вывести массив, сумму и среднее арифметическое.","Массив пересоздаётся пока размер > 0.","Программа завершается при вводе размера ≤ 0."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n;
+    <span class="kw">do</span> {
+        cin &gt;&gt; n;
+        <span class="kw">if</span> (n &lt;= <span class="num">0</span>) <span class="kw">break</span>;
+        <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+        <span class="type">double</span> sum = <span class="num">0</span>;
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) { a[i] = <span class="fn">rand</span>()%<span class="num">100</span>; sum += a[i]; }
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+        cout &lt;&lt; <span class="str">"
+Sum: "</span> &lt;&lt; sum &lt;&lt; <span class="str">" Avg: "</span> &lt;&lt; sum/n &lt;&lt; endl;
+        <span class="kw">delete</span>[] a;
+    } <span class="kw">while</span> (n &gt; <span class="num">0</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:14,title:"Одинаковые элементы",task:["Пользователь вводит размер и элементы массива.","Вывести весь массив, наибольший и наименьший.","Найти элементы с одинаковыми значениями.","Вывести значения и порядковые номера дубликатов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> mn, mx;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];
+    mn = mx = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) {
+        cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>;
+        <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+        <span class="kw">if</span> (a[i] &gt; mx) mx = a[i];
+    }
+    cout &lt;&lt; <span class="str">"
+Min: "</span> &lt;&lt; mn &lt;&lt; <span class="str">" Max: "</span> &lt;&lt; mx &lt;&lt; endl;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = i+<span class="num">1</span>; j &lt; n; j++)
+            <span class="kw">if</span> (a[i] == a[j])
+                cout &lt;&lt; <span class="str">"Value "</span> &lt;&lt; a[i] &lt;&lt; <span class="str">" at ["</span> &lt;&lt; i &lt;&lt; <span class="str">"] and ["</span> &lt;&lt; j &lt;&lt; <span class="str">"]"</span> &lt;&lt; endl;
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:15,title:"Двумерный 7×7, диагональ",task:["Создать матрицу 7×7 со случайными числами, вывести.","Найти и вывести сумму элементов главной диагонали.","Пользователь вводит координаты элемента.","Умножить элемент на 2, вывести обновлённую матрицу."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> m[<span class="num">7</span>][<span class="num">7</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++)
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) m[i][j] = <span class="fn">rand</span>() % <span class="num">50</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="type">int</span> diag = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) diag += m[i][i];
+    cout &lt;&lt; <span class="str">"Diagonal sum: "</span> &lt;&lt; diag &lt;&lt; endl;
+    <span class="type">int</span> r, c; cin &gt;&gt; r &gt;&gt; c;
+    m[r][c] *= <span class="num">2</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">7</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">7</span>; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>;
+        cout &lt;&lt; endl;
+    }
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:16,title:"Функции с параметрами",task:["Функция: умножить 2 числа и вывести результат.","Функция: принять 2 адреса, вывести значения по ним.","Функция: принять 2 переменные, вывести их адреса.","Программа демонстрирует все три функции."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="cmt">// 1. Умножение и вывод</span>
+<span class="type">void</span> <span class="fn">multiply</span>(<span class="type">int</span> a, <span class="type">int</span> b) { cout &lt;&lt; a*b &lt;&lt; endl; }
+<span class="cmt">// 2. Вывод значений по адресам</span>
+<span class="type">void</span> <span class="fn">printByAddr</span>(<span class="type">int</span>* p1, <span class="type">int</span>* p2) { cout &lt;&lt; *p1 &lt;&lt; <span class="str">" "</span> &lt;&lt; *p2 &lt;&lt; endl; }
+<span class="cmt">// 3. Вывод адресов переменных</span>
+<span class="type">void</span> <span class="fn">printAddresses</span>(<span class="type">int</span> a, <span class="type">int</span> b) { cout &lt;&lt; &amp;a &lt;&lt; <span class="str">" "</span> &lt;&lt; &amp;b &lt;&lt; endl; }
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> x = <span class="num">3</span>, y = <span class="num">4</span>;
+    <span class="fn">multiply</span>(x, y);
+    <span class="fn">printByAddr</span>(&amp;x, &amp;y);
+    <span class="fn">printAddresses</span>(x, y);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:17,title:"Перегрузка функций",task:["Перегруженная функция process:","• 2 целых → вывести диапазон чисел между ними.","• Вещественное → вернуть часть до точки (1.6 → 1).","• Массив целых → вернуть наименьший элемент."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="cmt">// 1. Диапазон целых чисел</span>
+<span class="type">void</span> <span class="fn">process</span>(<span class="type">int</span> a, <span class="type">int</span> b) {
+    <span class="kw">if</span> (a &gt; b) <span class="fn">swap</span>(a, b);
+    <span class="kw">for</span> (<span class="type">int</span> i = a; i &lt;= b; i++) cout &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+    cout &lt;&lt; endl;
+}
+<span class="cmt">// 2. Часть до точки</span>
+<span class="type">double</span> <span class="fn">process</span>(<span class="type">double</span> x) { <span class="kw">return</span> (<span class="type">int</span>)x; }
+<span class="cmt">// 3. Минимум массива</span>
+<span class="type">int</span> <span class="fn">process</span>(<span class="type">int</span> a[], <span class="type">int</span> n) {
+    <span class="type">int</span> mn = a[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt; n; i++) <span class="kw">if</span> (a[i] &lt; mn) mn = a[i];
+    <span class="kw">return</span> mn;
+}
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="fn">process</span>(<span class="num">2</span>, <span class="num">7</span>);
+    cout &lt;&lt; <span class="fn">process</span>(<span class="num">3.8</span>) &lt;&lt; endl;
+    <span class="type">int</span> a[] = {<span class="num">5</span>, <span class="num">1</span>, <span class="num">8</span>, <span class="num">2</span>};
+    cout &lt;&lt; <span class="fn">process</span>(a, <span class="num">4</span>) &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:18,title:"Удаление элемента из массива",task:["Пользователь вводит размер, массив заполняется случайно.","Запросить индекс элемента для удаления.","Удалить элемент из массива.","Повторять до тех пор, пока массив не опустеет."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>* a = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) a[i] = <span class="fn">rand</span>() % <span class="num">100</span>;
+    <span class="kw">while</span> (n &gt; <span class="num">0</span>) {
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) cout &lt;&lt; a[i] &lt;&lt; <span class="str">" "</span>; cout &lt;&lt; endl;
+        <span class="type">int</span> idx; cin &gt;&gt; idx;
+        <span class="kw">for</span> (<span class="type">int</span> i = idx; i &lt; n-<span class="num">1</span>; i++) a[i] = a[i+<span class="num">1</span>];
+        n--;
+    }
+    <span class="kw">delete</span>[] a;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:19,title:"Перевёртыш 2D массива",task:["Пользователь вводит размер двумерного массива.","Выбирает: заполнить процедурно или с клавиатуры.","Вывести массив на экран.","Вывести массив в обратном порядке (строки и столбцы)."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="type">int</span>** m = <span class="kw">new</span> <span class="type">int</span>*[n];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) m[i] = <span class="kw">new</span> <span class="type">int</span>[n];
+    <span class="type">int</span> choice; cin &gt;&gt; choice;
+    <span class="kw">if</span> (choice == <span class="num">1</span>)
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+            <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) m[i][j] = i*n + j + <span class="num">1</span>;
+    <span class="kw">else</span>
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++)
+            <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) cin &gt;&gt; m[i][j];
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) { <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; n; j++) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>; cout &lt;&lt; endl; }
+    <span class="kw">for</span> (<span class="type">int</span> i = n-<span class="num">1</span>; i &gt;= <span class="num">0</span>; i--) { <span class="kw">for</span> (<span class="type">int</span> j = n-<span class="num">1</span>; j &gt;= <span class="num">0</span>; j--) cout &lt;&lt; m[i][j] &lt;&lt; <span class="str">"	"</span>; cout &lt;&lt; endl; }
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; n; i++) <span class="kw">delete</span>[] m[i];
+    <span class="kw">delete</span>[] m;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:20,title:"Кассовый аппарат",task:["Меню кассового аппарата:","1. Новая продажа (ввести сумму).","2. Вывод списка продаж.","3. Отменить последнюю продажу.","0. Выход."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">double</span>&gt; sales;
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Новая продажа 2.Список 3.Отменить последнюю 0.Выход
+"</span>;
+        cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="type">double</span> s; cin &gt;&gt; s; sales.<span class="fn">push_back</span>(s); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>)
+            <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)sales.<span class="fn">size</span>(); i++)
+                cout &lt;&lt; i+<span class="num">1</span> &lt;&lt; <span class="str">": "</span> &lt;&lt; sales[i] &lt;&lt; endl;
+        <span class="kw">else if</span> (choice == <span class="num">3</span> &amp;&amp; !sales.<span class="fn">empty</span>()) sales.<span class="fn">pop_back</span>();
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:21,title:"Запись делителей в файл",task:["Запросить число с клавиатуры.","Если число ≤ 1 — вывести ошибку и завершить.","Найти все делители введённого числа.","Записать найденные делители в файл del.txt."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> n; cin &gt;&gt; n;
+    <span class="kw">if</span> (n &lt;= <span class="num">1</span>) { cout &lt;&lt; <span class="str">"Ошибка"</span>; <span class="kw">return</span> <span class="num">1</span>; }
+    ofstream f(<span class="str">"del.txt"</span>);
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">1</span>; i &lt;= n; i++)
+        <span class="kw">if</span> (n % i == <span class="num">0</span>) f &lt;&lt; i &lt;&lt; <span class="str">" "</span>;
+    f.<span class="fn">close</span>();
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:22,title:"Чтение из файла",task:["Создать файл с текстом на русском и английском.","Считать и вывести содержимое файла.","Вывести общее количество символов.","Определить количество символов кириллицы и латиницы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    ofstream out(<span class="str">"text.txt"</span>);
+    out &lt;&lt; <span class="str">"Hello everybody! This is my text file.
+"</span>;
+    out &lt;&lt; <span class="str">"Привет всем! Это мой текстовый файл."</span>;
+    out.<span class="fn">close</span>();
+    ifstream f(<span class="str">"text.txt"</span>);
+    string line, all = <span class="str">""</span>;
+    <span class="kw">while</span> (<span class="fn">getline</span>(f, line)) { cout &lt;&lt; line &lt;&lt; endl; all += line; }
+    f.<span class="fn">close</span>();
+    cout &lt;&lt; <span class="str">"Total chars: "</span> &lt;&lt; all.<span class="fn">size</span>() &lt;&lt; endl;
+    <span class="type">int</span> cyr = <span class="num">0</span>, lat = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">unsigned char</span> c : all) {
+        <span class="kw">if</span> ((c &gt;= <span class="str">'A'</span> &amp;&amp; c &lt;= <span class="str">'Z'</span>) || (c &gt;= <span class="str">'a'</span> &amp;&amp; c &lt;= <span class="str">'z'</span>)) lat++;
+        <span class="kw">else if</span> (c &gt;= <span class="num">0xC0</span>) cyr++;
+    }
+    cout &lt;&lt; <span class="str">"Latin: "</span> &lt;&lt; lat &lt;&lt; <span class="str">" Cyrillic: "</span> &lt;&lt; cyr &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:23,title:"Работа со строкой (поиск и замена)",task:["Пользователь вводит строку.","Запросить символ, вывести позицию первого вхождения.","Вывести все вхождения.","Позволить выбрать символ замены или не менять."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    string s;
+    <span class="fn">getline</span>(cin, s);
+    <span class="type">char</span> ch; cin &gt;&gt; ch;
+    <span class="cmt">// 1. Первое вхождение</span>
+    <span class="type">size_t</span> pos = s.<span class="fn">find</span>(ch);
+    <span class="kw">if</span> (pos != string::npos) cout &lt;&lt; <span class="str">"First: "</span> &lt;&lt; pos &lt;&lt; endl;
+    <span class="cmt">// 2. Все вхождения</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)s.<span class="fn">size</span>(); i++)
+        <span class="kw">if</span> (s[i] == ch) cout &lt;&lt; <span class="str">"Found at: "</span> &lt;&lt; i &lt;&lt; endl;
+    <span class="cmt">// 3. Замена</span>
+    <span class="type">char</span> rep; cin &gt;&gt; rep;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)s.<span class="fn">size</span>(); i++)
+        <span class="kw">if</span> (s[i] == ch) s[i] = rep;
+    cout &lt;&lt; s &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:24,title:"Строка: цифры, пробелы, символы",task:["Пользователь вводит строку с пробелами на английском.","Вывести количество цифр в строке.","Вывести количество пробелов.","Вывести первый и последний символы."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="type">int</span> <span class="fn">main</span>() {
+    string s;
+    <span class="fn">getline</span>(cin, s);
+    <span class="type">int</span> digits = <span class="num">0</span>, spaces = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="type">char</span> c : s) {
+        <span class="kw">if</span> (c &gt;= <span class="str">'0'</span> &amp;&amp; c &lt;= <span class="str">'9'</span>) digits++;
+        <span class="kw">if</span> (c == <span class="str">' '</span>) spaces++;
+    }
+    cout &lt;&lt; <span class="str">"Digits: "</span>  &lt;&lt; digits &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"Spaces: "</span>  &lt;&lt; spaces &lt;&lt; endl;
+    cout &lt;&lt; <span class="str">"First: "</span>   &lt;&lt; s.<span class="fn">front</span>() &lt;&lt; <span class="str">" Last: "</span> &lt;&lt; s.<span class="fn">back</span>() &lt;&lt; endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}`},
+{num:25,title:"Точка в пространстве (struct)",task:["Пользователь вводит имя и координаты точки.","Программа выводит информацию о точке.","Ввод продолжается пока не введено '!'."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
+<span class="kw">struct</span> <span class="type">Point</span> {
+    string name;
+    <span class="type">double</span> x, y;
+};
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Point</span> p;
+    <span class="kw">do</span> {
+        cin &gt;&gt; p.name;
+        <span class="kw">if</span> (p.name == <span class="str">"!"</span>) <span class="kw">break</span>;
+        cin &gt;&gt; p.x &gt;&gt; p.y;
+        cout &lt;&lt; <span class="str">"Point "</span> &lt;&lt; p.name &lt;&lt; <span class="str">": ("</span> &lt;&lt; p.x &lt;&lt; <span class="str">", "</span> &lt;&lt; p.y &lt;&lt; <span class="str">")"</span> &lt;&lt; endl;
+    } <span class="kw">while</span> (p.name != <span class="str">"!"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}`}
+];;
+
+let active=0, openTabs=[0];
+
+function buildSidebar(){
+  const c=document.getElementById('sidebar-files');
+  T.forEach((t,i)=>{
+    const el=document.createElement('div');
+    el.className='tree-file'+(i===0?' active':'');
+    el.id='sf-'+i;
+    el.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="ticket-num">&#8470;${t.num}</span>`;
+    el.onclick=()=>openTicket(i);
+    c.appendChild(el);
+  });
+}
+
+function buildTabs(){
+  const bar=document.getElementById('tabs-bar');
+  bar.innerHTML='';
+  openTabs.forEach(idx=>{
+    const t=T[idx];
+    const tab=document.createElement('div');
+    tab.className='tab'+(idx===active?' active':'');
+    tab.id='tab-'+idx;
+    tab.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="tab-close" onclick="closeTab(event,${idx})">&#215;</span>`;
+    tab.onclick=()=>openTicket(idx);
+    bar.appendChild(tab);
+  });
+}
+
+function renderCode(idx){
+  const t=T[idx];
+  const lines=t.code.split('\n');
+  document.getElementById('line-numbers').innerHTML=lines.map((_,i)=>i+1).join('\n');
+  document.getElementById('code-content').innerHTML=t.code;
+  document.getElementById('status-pos').textContent=`Стр 1, Стб 1 | ${lines.length} строк`;
+}
+
+function renderTask(idx){
+  const t=T[idx];
+  document.getElementById('task-body').innerHTML=
+    `<div class="task-title">Билет &#8470;${t.num} &mdash; ${t.title}</div>`+
+    t.task.map(item=>`<div class="task-item"><span class="task-bullet">&#9657;</span><span>${item}</span></div>`).join('');
+}
+
+function openTicket(idx){
+  active=idx;
+  if(!openTabs.includes(idx)) openTabs.push(idx);
+  document.querySelectorAll('.tree-file').forEach(el=>el.classList.remove('active'));
+  const sf=document.getElementById('sf-'+idx); if(sf) sf.classList.add('active');
+  buildTabs(); renderCode(idx); renderTask(idx); updateTerm(idx);
+}
+
+function closeTab(e,idx){
+  e.stopPropagation();
+  openTabs=openTabs.filter(t=>t!==idx);
+  if(!openTabs.length) openTabs=[0];
+  if(active===idx) active=openTabs[openTabs.length-1];
+  buildTabs(); renderCode(active); renderTask(active);
+}
+
+function updateTerm(idx){
+  const t=T[idx];
+  const name=`билет_${String(t.num).padStart(2,'0')}.cpp`;
+  document.getElementById('terminal-body').innerHTML=
+    `<span class="term-ok">Сборка начата...</span><br><span class="term-info">&nbsp;&nbsp;1&gt; MSVC 19.38 &mdash; x64 Debug</span><br><span class="term-info">&nbsp;&nbsp;1&gt; Компиляция: ${name}</span><br><span class="term-ok">&nbsp;&nbsp;1&gt; ${name} &mdash; ошибок: 0</span><br><span class="term-ok">========== Сборка: 1 успешно, 0 ошибок ==========</span>`;
+}
+
+function buildAndRun(){ updateTerm(active); }
+function syncScroll(){ document.getElementById('line-numbers').scrollTop=document.getElementById('code-content').scrollTop; }
+
+buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
+
+// Override buildSidebar/buildTabs/renderTask to use correct classes
+function buildSidebar(){
+  const c=document.getElementById('sidebar-files');
+  c.innerHTML='';
+  T.forEach((t,i)=>{
+    const el=document.createElement('div');
+    el.className='tree-file'+(i===0?' active':'');
+    el.id='sf-'+i;
+    el.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="ticket-num">&#8470;${t.num}</span>`;
+    el.onclick=()=>openTicket(i);
+    c.appendChild(el);
+  });
+}
 </script>
 </body>
 </html>
