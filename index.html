@@ -5,307 +5,198 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Егор Евстифеев — Разработчик / Сисадмин</title>
 <style>
-/* ===== SWITCHER ===== */
 .page { display: none !important; }
 .page.active { display: block !important; }
 #page-vs.active { display: flex !important; }
 
-/* ===== RESUME STYLES ===== */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
 #page-resume {
-  --bg: #0a0a0f; --surface: #111118; --surface2: #1a1a24;
-  --border: #2a2a3a; --accent: #00d4ff; --accent2: #7c3aed;
-  --text: #e2e8f0; --text-dim: #64748b; --text-muted: #94a3b8;
-  --green: #10b981; --yellow: #f59e0b;
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
+  --bg:#0a0a0f;--surface:#111118;--surface2:#1a1a24;--border:#2a2a3a;
+  --accent:#00d4ff;--accent2:#7c3aed;--text:#e2e8f0;--text-dim:#64748b;
+  --text-muted:#94a3b8;--green:#10b981;--yellow:#f59e0b;
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;
 }
-#page-resume * { margin: 0; padding: 0; box-sizing: border-box; }
+#page-resume * { margin:0;padding:0;box-sizing:border-box; }
 .r-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(10,10,15,0.88);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid #2a2a3a;
-  padding: 0 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 56px;
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,15,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid #2a2a3a;padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;height:56px;
 }
 .r-nav-logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 700; font-size: 15px;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  letter-spacing: 2px;
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;
+  background:linear-gradient(135deg,#00d4ff,#7c3aed);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;
 }
-.r-nav-links { display: flex; gap: 32px; }
+.r-nav-links { display:flex;gap:32px; }
 .r-nav-links a {
-  font-size: 13px; color: #64748b;
-  text-decoration: none; letter-spacing: 0.5px;
-  transition: color .2s;
-  font-family: 'JetBrains Mono', monospace;
+  font-size:13px;color:#64748b;text-decoration:none;letter-spacing:.5px;
+  transition:color .2s;font-family:'JetBrains Mono',monospace;
 }
-.r-nav-links a:hover { color: #00d4ff; }
+.r-nav-links a:hover { color:#00d4ff; }
 .r-status-badge {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(16,185,129,0.08);
-  border: 1px solid rgba(16,185,129,0.25);
-  border-radius: 20px; padding: 6px 14px;
-  font-size: 12px; color: #10b981;
-  font-family: 'JetBrains Mono', monospace;
-  cursor: pointer;
-  transition: background .2s, border-color .2s, transform .15s;
-  user-select: none;
+  display:flex;align-items:center;gap:8px;background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.25);border-radius:20px;padding:6px 14px;
+  font-size:12px;color:#10b981;font-family:'JetBrains Mono',monospace;cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s;user-select:none;
 }
-.r-status-badge:hover {
-  background: rgba(16,185,129,0.16);
-  border-color: rgba(16,185,129,0.5);
-  transform: scale(1.04);
-}
-.r-status-badge:active { transform: scale(0.97); }
-.r-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: #10b981; box-shadow: 0 0 8px #10b981;
-  animation: rpulse 2s infinite;
-}
+.r-status-badge:hover { background:rgba(16,185,129,0.16);border-color:rgba(16,185,129,0.5);transform:scale(1.04); }
+.r-status-badge:active { transform:scale(0.97); }
+.r-dot { width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 8px #10b981;animation:rpulse 2s infinite; }
 @keyframes rpulse { 0%,100%{opacity:1}50%{opacity:.4} }
-.r-hero {
-  padding: 140px 40px 60px;
-  max-width: 1100px; margin: 0 auto;
-}
-.r-hero-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; color: #00d4ff;
-  letter-spacing: 3px; margin-bottom: 20px; opacity: .8;
-}
+.r-hero { padding:140px 40px 60px;max-width:1100px;margin:0 auto; }
+.r-hero-label { font-family:'JetBrains Mono',monospace;font-size:12px;color:#00d4ff;letter-spacing:3px;margin-bottom:20px;opacity:.8; }
 .r-hero-name {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(42px,7vw,80px);
-  font-weight: 700; line-height: 1; letter-spacing: -2px;
-  background: linear-gradient(135deg,#fff 0%,#94a3b8 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
+  font-family:'JetBrains Mono',monospace;font-size:clamp(42px,7vw,80px);
+  font-weight:700;line-height:1;letter-spacing:-2px;
+  background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;
 }
-.r-hero-title {
-  font-size: 18px; color: #00d4ff;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 400; margin-bottom: 28px; letter-spacing: 1px;
-}
-.r-hero-bio {
-  font-size: 15px; color: #94a3b8;
-  max-width: 540px; line-height: 1.8; margin-bottom: 40px;
-}
-.r-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.r-hero-title { font-size:18px;color:#00d4ff;font-family:'JetBrains Mono',monospace;font-weight:400;margin-bottom:28px;letter-spacing:1px; }
+.r-hero-bio { font-size:15px;color:#94a3b8;max-width:540px;line-height:1.8;margin-bottom:40px; }
+.r-hero-actions { display:flex;gap:14px;flex-wrap:wrap; }
 .r-btn-p {
-  padding: 12px 28px; border-radius: 6px;
-  background: linear-gradient(135deg,#00d4ff,#7c3aed);
-  color: #fff; font-size: 14px; font-weight: 500;
-  text-decoration: none; letter-spacing: .5px;
-  transition: opacity .2s, transform .1s;
+  padding:12px 28px;border-radius:6px;background:linear-gradient(135deg,#00d4ff,#7c3aed);
+  color:#fff;font-size:14px;font-weight:500;text-decoration:none;letter-spacing:.5px;
+  transition:opacity .2s,transform .1s;
 }
-.r-btn-p:hover { opacity:.85; transform:translateY(-1px); }
+.r-btn-p:hover { opacity:.85;transform:translateY(-1px); }
 .r-btn-s {
-  padding: 12px 28px; border-radius: 6px;
-  border: 1px solid #2a2a3a; color: #94a3b8;
-  font-size: 14px; font-weight: 500;
-  text-decoration: none; letter-spacing: .5px;
-  transition: border-color .2s, color .2s, transform .1s;
+  padding:12px 28px;border-radius:6px;border:1px solid #2a2a3a;color:#94a3b8;
+  font-size:14px;font-weight:500;text-decoration:none;letter-spacing:.5px;
+  transition:border-color .2s,color .2s,transform .1s;
 }
-.r-btn-s:hover { border-color:#00d4ff; color:#00d4ff; transform:translateY(-1px); }
-.r-chips {
-  display: flex; flex-wrap: wrap; gap: 10px;
-  padding: 0 40px 60px; max-width: 1100px; margin: 0 auto;
-}
+.r-btn-s:hover { border-color:#00d4ff;color:#00d4ff;transform:translateY(-1px); }
+.r-chips { display:flex;flex-wrap:wrap;gap:10px;padding:0 40px 60px;max-width:1100px;margin:0 auto; }
 .r-chip {
-  display: flex; align-items: center; gap: 8px;
-  background: #111118; border: 1px solid #2a2a3a;
-  border-radius: 6px; padding: 8px 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; color: #94a3b8; text-decoration: none;
-  transition: border-color .2s, color .2s;
+  display:flex;align-items:center;gap:8px;background:#111118;border:1px solid #2a2a3a;
+  border-radius:6px;padding:8px 14px;font-family:'JetBrains Mono',monospace;
+  font-size:12px;color:#94a3b8;text-decoration:none;transition:border-color .2s,color .2s;
 }
-.r-chip:hover { border-color:#00d4ff; color:#00d4ff; }
-.r-section {
-  padding: 60px 40px; max-width: 1100px; margin: 0 auto;
-}
-.r-section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: #00d4ff;
-  letter-spacing: 3px; margin-bottom: 12px; opacity: .7;
-}
-.r-section-title {
-  font-size: 28px; font-weight: 600;
-  margin-bottom: 40px; letter-spacing: -.5px;
-}
-.r-skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
-  gap: 16px;
-}
+.r-chip:hover { border-color:#00d4ff;color:#00d4ff; }
+.r-section { padding:60px 40px;max-width:1100px;margin:0 auto; }
+.r-section-label { font-family:'JetBrains Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:3px;margin-bottom:12px;opacity:.7; }
+.r-section-title { font-size:28px;font-weight:600;margin-bottom:40px;letter-spacing:-.5px; }
+.r-skills-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px; }
 .r-skill-card {
-  background: #111118; border: 1px solid #2a2a3a;
-  border-radius: 10px; padding: 20px;
-  transition: border-color .2s, transform .2s;
+  background:#111118;border:1px solid #2a2a3a;border-radius:10px;padding:20px;
+  transition:border-color .2s,transform .2s;
 }
-.r-skill-card:hover { border-color:#00d4ff; transform:translateY(-2px); }
-.r-skill-icon { font-size: 22px; margin-bottom: 12px; }
-.r-skill-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: #00d4ff;
-  letter-spacing: 2px; margin-bottom: 12px; font-weight: 600;
-}
-.r-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.r-tag {
-  background: #1a1a24; border: 1px solid #2a2a3a;
-  border-radius: 4px; padding: 3px 9px;
-  font-size: 12px; color: #94a3b8;
-  font-family: 'JetBrains Mono', monospace;
-}
-.r-exp-list { display: flex; flex-direction: column; gap: 20px; }
+.r-skill-card:hover { border-color:#00d4ff;transform:translateY(-2px); }
+.r-skill-icon { font-size:22px;margin-bottom:12px; }
+.r-skill-title { font-family:'JetBrains Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:2px;margin-bottom:12px;font-weight:600; }
+.r-tags { display:flex;flex-wrap:wrap;gap:6px; }
+.r-tag { background:#1a1a24;border:1px solid #2a2a3a;border-radius:4px;padding:3px 9px;font-size:12px;color:#94a3b8;font-family:'JetBrains Mono',monospace; }
+.r-exp-list { display:flex;flex-direction:column;gap:20px; }
 .r-exp-card {
-  background: #111118; border: 1px solid #2a2a3a;
-  border-left: 3px solid #00d4ff;
-  border-radius: 10px; padding: 24px 28px;
-  transition: transform .2s;
+  background:#111118;border:1px solid #2a2a3a;border-left:3px solid #00d4ff;
+  border-radius:10px;padding:24px 28px;transition:transform .2s;
 }
 .r-exp-card:hover { transform:translateX(4px); }
-.r-exp-meta {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
-}
-.r-exp-role { font-size: 16px; font-weight: 600; }
+.r-exp-meta { display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px; }
+.r-exp-role { font-size:16px;font-weight:600; }
 .r-exp-period {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: #64748b;
-  background: #1a1a24; border: 1px solid #2a2a3a;
-  border-radius: 4px; padding: 3px 8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748b;
+  background:#1a1a24;border:1px solid #2a2a3a;border-radius:4px;padding:3px 8px;
 }
-.r-exp-company {
-  font-size: 13px; color: #00d4ff;
-  font-family: 'JetBrains Mono', monospace; margin-bottom: 14px;
-}
-.r-exp-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.r-exp-items li {
-  font-size: 14px; color: #94a3b8;
-  padding-left: 16px; position: relative;
-}
-.r-exp-items li::before {
-  content: '▸'; position: absolute; left: 0;
-  color: #00d4ff; font-size: 10px; top: 3px;
-}
-.r-divider {
-  height: 1px;
-  background: linear-gradient(90deg,transparent,#2a2a3a,transparent);
-  margin: 0 40px;
-}
-.r-footer {
-  text-align: center; padding: 40px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; color: #64748b;
-}
+.r-exp-company { font-size:13px;color:#00d4ff;font-family:'JetBrains Mono',monospace;margin-bottom:14px; }
+.r-exp-items { list-style:none;display:flex;flex-direction:column;gap:6px; }
+.r-exp-items li { font-size:14px;color:#94a3b8;padding-left:16px;position:relative; }
+.r-exp-items li::before { content:'▸';position:absolute;left:0;color:#00d4ff;font-size:10px;top:3px; }
+.r-divider { height:1px;background:linear-gradient(90deg,transparent,#2a2a3a,transparent);margin:0 40px; }
+.r-footer { text-align:center;padding:40px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#64748b; }
 
-/* ===== VS STYLES (scoped to #page-vs) ===== */
-
-  :root {
-    --vs-bg: #1e1e1e; --vs-sidebar: #252526; --vs-panel: #2d2d30;
-    --vs-tab-active: #1e1e1e; --vs-tab-inactive: #2d2d30; --vs-tab-hover: #3e3e42;
-    --vs-border: #3f3f46; --vs-accent: #0078d4; --vs-accent2: #569cd6;
-    --vs-green: #4ec9b0; --vs-yellow: #dcdcaa; --vs-orange: #ce9178;
-    --vs-purple: #c586c0; --vs-comment: #6a9955; --vs-string: #ce9178;
-    --vs-number: #b5cea8; --vs-keyword: #569cd6; --vs-type: #4ec9b0;
-    --vs-text: #d4d4d4; --vs-text-dim: #858585; --vs-titlebar: #3c3c3c;
-    --vs-statusbar: #007acc; --vs-scrollbar: #424242;
-  }
-#page-vs   * { margin:0; padding:0; box-sizing:border-box; }
-  #page-vs { font-family:'Segoe UI',system-ui,sans-serif; background:var(--vs-bg); color:var(--vs-text); height:100vh; display:flex; flex-direction:column; overflow:hidden; font-size:13px; }
-#page-vs   .titlebar { background:var(--vs-titlebar); height:30px; display:flex; align-items:center; padding:0 12px; gap:8px; user-select:none; border-bottom:1px solid #111; flex-shrink:0; }
-#page-vs   .titlebar-dots { display:flex; gap:6px; }
-#page-vs   .dot { width:12px; height:12px; border-radius:50%; }
-#page-vs   .dot-red{background:#ff5f57} .dot-yellow{background:#febc2e} .dot-green{background:#28c840}
-#page-vs   .titlebar-title { flex:1; text-align:center; color:#ccc; font-size:12px; letter-spacing:.3px; }
-#page-vs   .menubar { background:var(--vs-titlebar); height:26px; display:flex; align-items:center; padding:0 6px; gap:2px; border-bottom:1px solid #111; flex-shrink:0; }
-#page-vs   .menu-item { padding:2px 8px; border-radius:3px; color:#ccc; font-size:12px; cursor:pointer; }
-#page-vs   .menu-item:hover { background:rgba(255,255,255,.1); }
-#page-vs   .toolbar { background:var(--vs-panel); height:32px; display:flex; align-items:center; padding:0 6px; gap:2px; border-bottom:1px solid var(--vs-border); flex-shrink:0; }
-#page-vs   .toolbar-btn { width:26px; height:26px; border:none; background:transparent; color:#bbb; border-radius:3px; cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; }
-#page-vs   .toolbar-btn:hover { background:rgba(255,255,255,.1); }
-#page-vs   .toolbar-sep { width:1px; height:18px; background:var(--vs-border); margin:0 4px; }
-#page-vs   .run-btn { background:#0e639c; border:none; color:#fff; padding:3px 14px; border-radius:2px; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px; margin-left:8px; }
-#page-vs   .run-btn:hover { background:#1177bb; }
-#page-vs   .main { flex:1; display:flex; overflow:hidden; }
-#page-vs   .activitybar { width:48px; background:#333; display:flex; flex-direction:column; align-items:center; padding:6px 0; gap:4px; border-right:1px solid #111; flex-shrink:0; }
-#page-vs   .act-btn { width:36px; height:36px; border:none; background:transparent; color:#858585; border-radius:3px; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; position:relative; }
-#page-vs   .act-btn:hover, .act-btn.active { color:#e8e8e8; }
-#page-vs   .act-btn.active::before { content:''; position:absolute; left:0; top:6px; bottom:6px; width:2px; background:#0078d4; border-radius:0 2px 2px 0; }
-#page-vs   .sidebar { width:240px; background:var(--vs-sidebar); border-right:1px solid var(--vs-border); display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; }
-#page-vs   .sidebar-header { padding:8px 12px 6px; font-size:11px; font-weight:700; color:#bbb; letter-spacing:1px; text-transform:uppercase; border-bottom:1px solid var(--vs-border); flex-shrink:0; }
-#page-vs   .sidebar-tree { flex:1; overflow-y:auto; padding:4px 0; }
-#page-vs   .sidebar-tree::-webkit-scrollbar { width:6px; }
-#page-vs   .sidebar-tree::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
-#page-vs   .tree-folder { padding:2px 8px 2px 12px; display:flex; align-items:center; gap:6px; color:#ccc; font-size:12px; cursor:pointer; user-select:none; }
-#page-vs   .tree-folder:hover { background:rgba(255,255,255,.05); }
-#page-vs   .tree-file { padding:2px 8px 2px 28px; display:flex; align-items:center; gap:6px; color:#ccc; font-size:12px; cursor:pointer; user-select:none; transition:background .1s; }
-#page-vs   .tree-file:hover { background:rgba(255,255,255,.05); }
-#page-vs   .tree-file.active { background:#37373d; color:#fff; }
-#page-vs   .file-icon { color:#519aba; font-size:11px; }
-#page-vs   .ticket-num { margin-left:auto; color:var(--vs-text-dim); font-size:10px; }
-#page-vs   .editor-area { flex:1; display:flex; flex-direction:column; overflow:hidden; }
-#page-vs   .tabs-bar { background:var(--vs-panel); display:flex; border-bottom:1px solid var(--vs-border); overflow-x:auto; flex-shrink:0; }
-#page-vs   .tabs-bar::-webkit-scrollbar { height:4px; }
-#page-vs   .tabs-bar::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); }
-#page-vs   .tab { display:flex; align-items:center; gap:6px; padding:0 12px; height:35px; border-right:1px solid var(--vs-border); cursor:pointer; font-size:12px; color:#969696; background:var(--vs-tab-inactive); white-space:nowrap; flex-shrink:0; user-select:none; }
-#page-vs   .tab:hover { background:var(--vs-tab-hover); }
-#page-vs   .tab.active { background:var(--vs-tab-active); color:#fff; border-top:1px solid #0078d4; }
-#page-vs   .tab-close { font-size:13px; color:#858585; border-radius:3px; padding:1px 2px; }
-#page-vs   .tab-close:hover { background:rgba(255,255,255,.15); color:#fff; }
-#page-vs   .editor-split { flex:1; display:flex; overflow:hidden; }
-#page-vs   .code-editor { flex:1; display:flex; overflow:hidden; background:var(--vs-bg); }
-#page-vs   .line-numbers { background:var(--vs-bg); color:var(--vs-text-dim); font-family:'Consolas','Courier New',monospace; font-size:13px; line-height:20px; padding:10px 8px 10px 16px; text-align:right; min-width:50px; border-right:1px solid rgba(255,255,255,.05); user-select:none; overflow:hidden; flex-shrink:0; }
-#page-vs   .code-content { flex:1; overflow:auto; padding:10px 0 10px 16px; font-family:'Consolas','Courier New',monospace; font-size:13px; line-height:20px; white-space:pre; }
-#page-vs   .code-content::-webkit-scrollbar { width:10px; height:10px; }
-#page-vs   .code-content::-webkit-scrollbar-track { background:var(--vs-bg); }
-#page-vs   .code-content::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
-#page-vs   .kw { color:#569cd6; } .type { color:#4ec9b0; } .fn { color:#dcdcaa; }
-#page-vs   .str { color:#ce9178; } .num { color:#b5cea8; } .cmt { color:#6a9955; }
-#page-vs   .pp { color:#c586c0; }
-#page-vs   .task-panel { width:300px; background:var(--vs-sidebar); border-left:1px solid var(--vs-border); display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; }
-#page-vs   .task-header { padding:10px 14px; background:var(--vs-panel); border-bottom:1px solid var(--vs-border); font-size:11px; color:#bbb; text-transform:uppercase; letter-spacing:1px; font-weight:700; }
-#page-vs   .task-body { padding:14px; overflow-y:auto; flex:1; font-size:13px; line-height:1.7; color:#ccc; }
-#page-vs   .task-body::-webkit-scrollbar { width:6px; }
-#page-vs   .task-body::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); border-radius:3px; }
-#page-vs   .task-title { color:#4fc3f7; font-weight:700; font-size:14px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--vs-border); }
-#page-vs   .task-item { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
-#page-vs   .task-bullet { color:#0078d4; flex-shrink:0; margin-top:3px; }
-#page-vs   .bottom-panel { background:var(--vs-panel); border-top:1px solid var(--vs-border); height:110px; display:flex; flex-direction:column; flex-shrink:0; }
-#page-vs   .panel-tabs { display:flex; border-bottom:1px solid var(--vs-border); }
-#page-vs   .panel-tab { padding:4px 14px; font-size:12px; color:#969696; cursor:pointer; border-bottom:2px solid transparent; user-select:none; }
-#page-vs   .panel-tab.active { color:#fff; border-bottom-color:#0078d4; }
-#page-vs   .terminal-body { flex:1; overflow-y:auto; padding:6px 14px; font-family:'Consolas',monospace; font-size:12px; color:#ccc; line-height:1.6; }
-#page-vs   .term-ok { color:#4ec9b0; } .term-info { color:#569cd6; } .term-prompt { color:#0e639c; }
-#page-vs   .statusbar { background:var(--vs-statusbar); height:22px; display:flex; align-items:center; padding:0 10px; gap:16px; flex-shrink:0; }
-#page-vs   .status-item { color:rgba(255,255,255,.9); font-size:11.5px; display:flex; align-items:center; gap:4px; cursor:pointer; }
-#page-vs   .status-right { margin-left:auto; display:flex; gap:12px; }
-
-
-/* back button override */
+/* VS STYLES */
+:root {
+  --vs-bg:#1e1e1e;--vs-sidebar:#252526;--vs-panel:#2d2d30;
+  --vs-tab-active:#1e1e1e;--vs-tab-inactive:#2d2d30;--vs-tab-hover:#3e3e42;
+  --vs-border:#3f3f46;--vs-text:#d4d4d4;--vs-text-dim:#858585;
+  --vs-titlebar:#3c3c3c;--vs-statusbar:#007acc;--vs-scrollbar:#424242;
+}
+#page-vs * { margin:0;padding:0;box-sizing:border-box; }
+#page-vs { font-family:'Segoe UI',system-ui,sans-serif;background:var(--vs-bg);color:var(--vs-text);height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:13px; }
+#page-vs .titlebar { background:var(--vs-titlebar);height:30px;display:flex;align-items:center;padding:0 12px;gap:8px;user-select:none;border-bottom:1px solid #111;flex-shrink:0; }
+#page-vs .titlebar-dots { display:flex;gap:6px; }
+#page-vs .dot { width:12px;height:12px;border-radius:50%; }
+#page-vs .dot-red{background:#ff5f57} #page-vs .dot-yellow{background:#febc2e} #page-vs .dot-green{background:#28c840}
+#page-vs .titlebar-title { flex:1;text-align:center;color:#ccc;font-size:12px;letter-spacing:.3px; }
+#page-vs .menubar { background:var(--vs-titlebar);height:26px;display:flex;align-items:center;padding:0 6px;gap:2px;border-bottom:1px solid #111;flex-shrink:0; }
+#page-vs .menu-item { padding:2px 8px;border-radius:3px;color:#ccc;font-size:12px;cursor:pointer; }
+#page-vs .menu-item:hover { background:rgba(255,255,255,.1); }
+#page-vs .toolbar { background:var(--vs-panel);height:32px;display:flex;align-items:center;padding:0 6px;gap:2px;border-bottom:1px solid var(--vs-border);flex-shrink:0; }
+#page-vs .toolbar-btn { width:26px;height:26px;border:none;background:transparent;color:#bbb;border-radius:3px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center; }
+#page-vs .toolbar-btn:hover { background:rgba(255,255,255,.1); }
+#page-vs .toolbar-sep { width:1px;height:18px;background:var(--vs-border);margin:0 4px; }
+#page-vs .run-btn { background:#0e639c;border:none;color:#fff;padding:3px 14px;border-radius:2px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px;margin-left:8px; }
+#page-vs .run-btn:hover { background:#1177bb; }
+#page-vs .main { flex:1;display:flex;overflow:hidden; }
+#page-vs .activitybar { width:48px;background:#333;display:flex;flex-direction:column;align-items:center;padding:6px 0;gap:4px;border-right:1px solid #111;flex-shrink:0; }
+#page-vs .act-btn { width:36px;height:36px;border:none;background:transparent;color:#858585;border-radius:3px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;position:relative; }
+#page-vs .act-btn:hover, #page-vs .act-btn.active { color:#e8e8e8; }
+#page-vs .act-btn.active::before { content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:#0078d4;border-radius:0 2px 2px 0; }
+#page-vs .sidebar { width:240px;background:var(--vs-sidebar);border-right:1px solid var(--vs-border);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0; }
+#page-vs .sidebar-header { padding:8px 12px 6px;font-size:11px;font-weight:700;color:#bbb;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--vs-border);flex-shrink:0; }
+#page-vs .sidebar-tree { flex:1;overflow-y:auto;padding:4px 0; }
+#page-vs .sidebar-tree::-webkit-scrollbar { width:6px; }
+#page-vs .sidebar-tree::-webkit-scrollbar-thumb { background:var(--vs-scrollbar);border-radius:3px; }
+#page-vs .tree-folder { padding:2px 8px 2px 12px;display:flex;align-items:center;gap:6px;color:#ccc;font-size:12px;cursor:pointer;user-select:none; }
+#page-vs .tree-folder:hover { background:rgba(255,255,255,.05); }
+#page-vs .tree-file { padding:2px 8px 2px 16px;display:flex;align-items:center;gap:6px;color:#ccc;font-size:12px;cursor:pointer;user-select:none;transition:background .1s; }
+#page-vs .tree-file:hover { background:rgba(255,255,255,.05); }
+#page-vs .tree-file.active { background:#37373d;color:#fff; }
+#page-vs .file-icon { color:#519aba;font-size:11px; }
+#page-vs .ticket-num { margin-left:auto;color:var(--vs-text-dim);font-size:10px; }
+#page-vs .editor-area { flex:1;display:flex;flex-direction:column;overflow:hidden; }
+#page-vs .tabs-bar { background:var(--vs-panel);display:flex;border-bottom:1px solid var(--vs-border);overflow-x:auto;flex-shrink:0; }
+#page-vs .tabs-bar::-webkit-scrollbar { height:4px; }
+#page-vs .tabs-bar::-webkit-scrollbar-thumb { background:var(--vs-scrollbar); }
+#page-vs .tab { display:flex;align-items:center;gap:6px;padding:0 12px;height:35px;border-right:1px solid var(--vs-border);cursor:pointer;font-size:12px;color:#969696;background:var(--vs-tab-inactive);white-space:nowrap;flex-shrink:0;user-select:none; }
+#page-vs .tab:hover { background:var(--vs-tab-hover); }
+#page-vs .tab.active { background:var(--vs-tab-active);color:#fff;border-top:1px solid #0078d4; }
+#page-vs .tab-close { font-size:13px;color:#858585;border-radius:3px;padding:1px 2px; }
+#page-vs .tab-close:hover { background:rgba(255,255,255,.15);color:#fff; }
+#page-vs .editor-split { flex:1;display:flex;overflow:hidden; }
+#page-vs .code-editor { flex:1;display:flex;overflow:hidden;background:var(--vs-bg); }
+#page-vs .line-numbers { background:var(--vs-bg);color:var(--vs-text-dim);font-family:'Consolas','Courier New',monospace;font-size:13px;line-height:20px;padding:10px 8px 10px 16px;text-align:right;min-width:50px;border-right:1px solid rgba(255,255,255,.05);user-select:none;overflow:hidden;flex-shrink:0; }
+#page-vs .code-content { flex:1;overflow:auto;padding:10px 0 10px 16px;font-family:'Consolas','Courier New',monospace;font-size:13px;line-height:20px;white-space:pre; }
+#page-vs .code-content::-webkit-scrollbar { width:10px;height:10px; }
+#page-vs .code-content::-webkit-scrollbar-track { background:var(--vs-bg); }
+#page-vs .code-content::-webkit-scrollbar-thumb { background:var(--vs-scrollbar);border-radius:3px; }
+#page-vs .kw{color:#569cd6} #page-vs .type{color:#4ec9b0} #page-vs .fn{color:#dcdcaa}
+#page-vs .str{color:#ce9178} #page-vs .num{color:#b5cea8} #page-vs .cmt{color:#6a9955} #page-vs .pp{color:#c586c0}
+#page-vs .task-panel { width:300px;background:var(--vs-sidebar);border-left:1px solid var(--vs-border);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0; }
+#page-vs .task-header { padding:10px 14px;background:var(--vs-panel);border-bottom:1px solid var(--vs-border);font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:1px;font-weight:700; }
+#page-vs .task-body { padding:14px;overflow-y:auto;flex:1;font-size:13px;line-height:1.7;color:#ccc; }
+#page-vs .task-body::-webkit-scrollbar { width:6px; }
+#page-vs .task-body::-webkit-scrollbar-thumb { background:var(--vs-scrollbar);border-radius:3px; }
+#page-vs .task-title { color:#4fc3f7;font-weight:700;font-size:14px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--vs-border); }
+#page-vs .task-item { display:flex;gap:8px;margin-bottom:8px;align-items:flex-start; }
+#page-vs .task-bullet { color:#0078d4;flex-shrink:0;margin-top:3px; }
+#page-vs .bottom-panel { background:var(--vs-panel);border-top:1px solid var(--vs-border);height:110px;display:flex;flex-direction:column;flex-shrink:0; }
+#page-vs .panel-tabs { display:flex;border-bottom:1px solid var(--vs-border); }
+#page-vs .panel-tab { padding:4px 14px;font-size:12px;color:#969696;cursor:pointer;border-bottom:2px solid transparent;user-select:none; }
+#page-vs .panel-tab.active { color:#fff;border-bottom-color:#0078d4; }
+#page-vs .terminal-body { flex:1;overflow-y:auto;padding:6px 14px;font-family:'Consolas',monospace;font-size:12px;color:#ccc;line-height:1.6; }
+#page-vs .term-ok{color:#4ec9b0} #page-vs .term-info{color:#569cd6} #page-vs .term-prompt{color:#0e639c}
+#page-vs .statusbar { background:var(--vs-statusbar);height:22px;display:flex;align-items:center;padding:0 10px;gap:16px;flex-shrink:0; }
+#page-vs .status-item { color:rgba(255,255,255,.9);font-size:11.5px;display:flex;align-items:center;gap:4px;cursor:pointer; }
+#page-vs .status-right { margin-left:auto;display:flex;gap:12px; }
 #page-vs .back-btn {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.85);
-  font-size: 11px; padding: 2px 10px;
-  border-radius: 3px; cursor: pointer;
-  margin-right: 6px;
-  transition: background .15s;
-  font-family: 'Segoe UI', sans-serif;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85);font-size:11px;padding:2px 10px;border-radius:3px;
+  cursor:pointer;margin-right:6px;transition:background .15s;font-family:'Segoe UI',sans-serif;
 }
-#page-vs .back-btn:hover { background: rgba(255,255,255,0.16); }
+#page-vs .back-btn:hover { background:rgba(255,255,255,0.16); }
+.grp-label {
+  padding:6px 8px 3px 10px;font-size:10px;letter-spacing:1.5px;
+  font-weight:700;text-transform:uppercase;user-select:none;margin-top:4px;
+}
 </style>
 </head>
 <body style="margin:0;padding:0;">
 
-<!-- ===== PAGE 1: RESUME ===== -->
+<!-- PAGE 1: RESUME -->
 <div id="page-resume" class="page active">
   <nav class="r-nav">
     <div class="r-nav-logo">EE.DEV</div>
@@ -314,12 +205,11 @@
       <a href="#experience">Опыт</a>
       <a href="#contacts">Контакты</a>
     </div>
-    <div class="r-status-badge" onclick="showPage('vs')" title="Нажми, чтобы узнать больше">
+    <div class="r-status-badge" onclick="showPage('vs')" title="Нажми, чтобы открыть VS с билетами">
       <div class="r-dot"></div>
       ДОСТУПЕН ДЛЯ РАБОТЫ
     </div>
   </nav>
-
   <section class="r-hero">
     <div class="r-hero-label">// Backend Developer &amp; SysAdmin</div>
     <h1 class="r-hero-name">ЕГОР<br>ЕВСТИФЕЕВ</h1>
@@ -331,16 +221,13 @@
       <a href="#contacts" class="r-btn-s">Связаться</a>
     </div>
   </section>
-
   <div class="r-chips" id="contacts">
     <a href="mailto:evstifeev.egor@bk.ru" class="r-chip">✉ evstifeev.egor@bk.ru</a>
     <a href="tel:+79183295999" class="r-chip">📱 +7 918 329 59-99</a>
     <a href="https://t.me/evst_egor" target="_blank" class="r-chip">✈ @evst_egor</a>
     <a href="https://github.com/FGun4ik" target="_blank" class="r-chip">⌥ github/FGun4ik</a>
   </div>
-
   <div class="r-divider"></div>
-
   <section class="r-section" id="skills">
     <div class="r-section-label">// 02. stack</div>
     <h2 class="r-section-title">Навыки</h2>
@@ -353,9 +240,7 @@
       <div class="r-skill-card"><div class="r-skill-icon">📋</div><div class="r-skill-title">ИНСТРУМЕНТЫ</div><div class="r-tags"><span class="r-tag">Jira</span><span class="r-tag">Kaiten</span><span class="r-tag">ООП</span><span class="r-tag">Паттерны</span><span class="r-tag">UML</span></div></div>
     </div>
   </section>
-
   <div class="r-divider"></div>
-
   <section class="r-section" id="experience">
     <div class="r-section-label">// 03. experience</div>
     <h2 class="r-section-title">Опыт работы</h2>
@@ -377,14 +262,12 @@
       </div>
     </div>
   </section>
-
   <div class="r-divider"></div>
   <footer class="r-footer">© 2026 Егор Евстифеев &nbsp;·&nbsp; Колледж «IT-TOP» &nbsp;·&nbsp; Сочи</footer>
 </div>
 
-<!-- ===== PAGE 2: VISUAL STUDIO ===== -->
+<!-- PAGE 2: VISUAL STUDIO -->
 <div id="page-vs" class="page">
-
 <div class="titlebar">
   <div class="titlebar-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
   <div class="titlebar-title">&#x1F4BB; Билеты_CPP — Microsoft Visual Studio 2022</div>
@@ -415,12 +298,7 @@
   </div>
   <div class="sidebar">
     <div class="sidebar-header">Обозреватель решений</div>
-    <div class="sidebar-tree">
-      <div class="tree-folder">&#128194; Решение 'Билеты_CPP'</div>
-      <div class="tree-folder" style="padding-left:24px">&#128193; Билеты_CPP</div>
-      <div class="tree-folder" style="padding-left:36px">&#128193; Исходные файлы</div>
-      <div id="sidebar-files"></div>
-    </div>
+    <div class="sidebar-tree" id="sidebar-tree"></div>
   </div>
   <div class="editor-area">
     <div class="tabs-bar" id="tabs-bar"></div>
@@ -449,7 +327,8 @@
     </div>
   </div>
 </div>
-<div class="statusbar"><button class="back-btn" onclick="showPage('resume')">← Резюме</button>
+<div class="statusbar">
+  <button class="back-btn" onclick="showPage('resume')">← Резюме</button>
   <div class="status-item">&#128256; main</div>
   <div class="status-item">&#9889; 0 ошибок</div>
   <div class="status-item">&#9888; 0 предупреждений</div>
@@ -461,6 +340,8 @@
     <div class="status-item">CRLF</div>
   </div>
 </div>
+</div>
+
 <script>
 const T=[
 {num:1,title:"Модуль числа",task:["Программа получает на вход 3 вещественных числа.","Вывести наибольший модуль числа.","Вывести сумму модулей этих чисел.","Вывести модуль суммы."],
@@ -946,91 +827,925 @@ code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
 }`}
 ];;
 
-let active=0, openTabs=[0];
+const T2=[
+{num:1,title:"Точка в пространстве",task:["Класс Point с полями name, x, y, z.","Методы input() и print().","Меню: вывести, изменить, добавить, удалить.","Использовать vector<Point>."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using namespace</span> std;
 
+<span class="kw">class</span> <span class="type">Point</span> {
+<span class="kw">public</span>:
+    string name;
+    <span class="type">double</span> x, y, z;
+    <span class="fn">Point</span>() : <span class="fn">name</span>(<span class="str">""</span>), <span class="fn">x</span>(<span class="num">0</span>), <span class="fn">y</span>(<span class="num">0</span>), <span class="fn">z</span>(<span class="num">0</span>) {}
+    <span class="fn">Point</span>(string n, <span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> z) : <span class="fn">name</span>(n), <span class="fn">x</span>(x), <span class="fn">y</span>(y), <span class="fn">z</span>(z) {}
+    <span class="type">void</span> <span class="fn">input</span>()  { cin &gt;&gt; name &gt;&gt; x &gt;&gt; y &gt;&gt; z; }
+    <span class="type">void</span> <span class="fn">print</span>()  { cout &lt;&lt; name &lt;&lt; <span class="str">" ("</span> &lt;&lt; x &lt;&lt; <span class="str">","</span> &lt;&lt; y &lt;&lt; <span class="str">","</span> &lt;&lt; z &lt;&lt; <span class="str">")\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Point</span>&gt; pts;
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Вывести 2.Изменить 3.Добавить 4.Убрать 0.Выход\n"</span>;
+        cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="kw">for</span> (<span class="kw">auto</span>&amp; p : pts) p.<span class="fn">print</span>(); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>) { <span class="type">int</span> i; cin &gt;&gt; i; pts[i].<span class="fn">input</span>(); }
+        <span class="kw">else if</span> (choice == <span class="num">3</span>) { <span class="type">Point</span> p; p.<span class="fn">input</span>(); pts.<span class="fn">push_back</span>(p); }
+        <span class="kw">else if</span> (choice == <span class="num">4</span>) { <span class="type">int</span> i; cin &gt;&gt; i; pts.<span class="fn">erase</span>(pts.<span class="fn">begin</span>() + i); }
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+}`},
+{num:2,title:"Планеты",task:["Класс Planet: name, color, population.","Методы input() и print().","Заполнить 3 планеты, добавить ещё 2 через ввод.","Вывести все планеты."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Planet</span> {
+<span class="kw">public</span>:
+    string name, color;
+    <span class="type">long</span> population;
+    <span class="fn">Planet</span>() : <span class="fn">name</span>(<span class="str">""</span>), <span class="fn">color</span>(<span class="str">""</span>), <span class="fn">population</span>(<span class="num">0</span>) {}
+    <span class="fn">Planet</span>(string n, string c, <span class="type">long</span> p) : <span class="fn">name</span>(n), <span class="fn">color</span>(c), <span class="fn">population</span>(p) {}
+    <span class="type">void</span> <span class="fn">input</span>()  { cin &gt;&gt; name &gt;&gt; color &gt;&gt; population; }
+    <span class="type">void</span> <span class="fn">print</span>()  { cout &lt;&lt; name &lt;&lt; <span class="str">" "</span> &lt;&lt; color &lt;&lt; <span class="str">" pop:"</span> &lt;&lt; population &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Planet</span>&gt; planets = {
+        {<span class="str">"Earth"</span>, <span class="str">"Blue"</span>,   <span class="num">8000000000L</span>},
+        {<span class="str">"Mars"</span>,  <span class="str">"Red"</span>,    <span class="num">0</span>},
+        {<span class="str">"Venus"</span>, <span class="str">"Yellow"</span>, <span class="num">0</span>}
+    };
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">2</span>; i++) { <span class="type">Planet</span> p; p.<span class="fn">input</span>(); planets.<span class="fn">push_back</span>(p); }
+    <span class="kw">for</span> (<span class="kw">auto</span>&amp; p : planets) p.<span class="fn">print</span>();
+}`},
+{num:3,title:"Рабочие (делегирование конструкторов)",task:["Класс Worker со статическим id.","Делегирование конструкторов: каждый зовёт самый полный.","Вывести список рабочих."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Worker</span> {
+    <span class="kw">static</span> <span class="type">int</span> nextId;
+<span class="kw">public</span>:
+    <span class="kw">const</span> <span class="type">int</span> id;
+    string name, gender;
+    <span class="type">int</span> age;
+    <span class="fn">Worker</span>(string n, string g, <span class="type">int</span> a) : <span class="fn">id</span>(nextId++), <span class="fn">name</span>(n), <span class="fn">gender</span>(g), <span class="fn">age</span>(a) {}
+    <span class="fn">Worker</span>(string n, string g)        : <span class="fn">Worker</span>(n, g, <span class="num">0</span>) {}
+    <span class="fn">Worker</span>(string n)                  : <span class="fn">Worker</span>(n, <span class="str">"unknown"</span>) {}
+    <span class="fn">Worker</span>()                          : <span class="fn">Worker</span>(<span class="str">"unknown"</span>) {}
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; id &lt;&lt; <span class="str">" "</span> &lt;&lt; name &lt;&lt; <span class="str">" "</span> &lt;&lt; gender &lt;&lt; <span class="str">" "</span> &lt;&lt; age &lt;&lt; <span class="str">"\n"</span>; }
+};
+<span class="type">int</span> <span class="type">Worker</span>::nextId = <span class="num">1</span>;
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Worker</span>&gt; workers = {
+        <span class="fn">Worker</span>(<span class="str">"Иванов"</span>, <span class="str">"M"</span>, <span class="num">30</span>),
+        <span class="fn">Worker</span>(<span class="str">"Петрова"</span>, <span class="str">"F"</span>),
+        <span class="fn">Worker</span>(<span class="str">"Сидоров"</span>)
+    };
+    <span class="kw">for</span> (<span class="kw">auto</span>&amp; w : workers) w.<span class="fn">print</span>();
+}`},
+{num:4,title:"Геттеры и сеттеры для планет",task:["Класс Planet с приватными полями.","Геттеры и сеттеры для всех полей.","Меню: вывести, редактировать."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Planet</span> {
+    string name, color;
+    <span class="type">long</span> population;
+<span class="kw">public</span>:
+    <span class="fn">Planet</span>() : <span class="fn">name</span>(<span class="str">""</span>), <span class="fn">color</span>(<span class="str">""</span>), <span class="fn">population</span>(<span class="num">0</span>) {}
+    string <span class="fn">getName</span>()       { <span class="kw">return</span> name; }
+    string <span class="fn">getColor</span>()      { <span class="kw">return</span> color; }
+    <span class="type">long</span>   <span class="fn">getPop</span>()         { <span class="kw">return</span> population; }
+    <span class="type">void</span> <span class="fn">setName</span>(string n)  { name = n; }
+    <span class="type">void</span> <span class="fn">setColor</span>(string c) { color = c; }
+    <span class="type">void</span> <span class="fn">setPop</span>(<span class="type">long</span> p)     { population = p; }
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; <span class="fn">getName</span>() &lt;&lt; <span class="str">" "</span> &lt;&lt; <span class="fn">getColor</span>() &lt;&lt; <span class="str">" "</span> &lt;&lt; <span class="fn">getPop</span>() &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Planet</span>&gt; planets(<span class="num">3</span>);
+    planets[<span class="num">0</span>].<span class="fn">setName</span>(<span class="str">"Earth"</span>); planets[<span class="num">0</span>].<span class="fn">setColor</span>(<span class="str">"Blue"</span>); planets[<span class="num">0</span>].<span class="fn">setPop</span>(<span class="num">8000000000L</span>);
+    planets[<span class="num">1</span>].<span class="fn">setName</span>(<span class="str">"Mars"</span>);  planets[<span class="num">1</span>].<span class="fn">setColor</span>(<span class="str">"Red"</span>);  planets[<span class="num">1</span>].<span class="fn">setPop</span>(<span class="num">0</span>);
+    planets[<span class="num">2</span>].<span class="fn">setName</span>(<span class="str">"Venus"</span>); planets[<span class="num">2</span>].<span class="fn">setColor</span>(<span class="str">"Yellow"</span>); planets[<span class="num">2</span>].<span class="fn">setPop</span>(<span class="num">0</span>);
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Вывести 2.Редактировать 0.Выход\n"</span>; cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="kw">for</span> (<span class="kw">auto</span>&amp; p : planets) p.<span class="fn">print</span>(); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>) {
+            <span class="type">int</span> i; string n, c; <span class="type">long</span> p;
+            cin &gt;&gt; i &gt;&gt; n &gt;&gt; c &gt;&gt; p;
+            planets[i].<span class="fn">setName</span>(n); planets[i].<span class="fn">setColor</span>(c); planets[i].<span class="fn">setPop</span>(p);
+        }
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+}`},
+{num:5,title:"Компании, инкапсуляция",task:["Класс Company: name, income, expense.","Методы getTurnover() и getProfit().","Меню: вывести, редактировать поле."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Company</span> {
+    string name;
+    <span class="type">double</span> income, expense;
+<span class="kw">public</span>:
+    <span class="fn">Company</span>(string n, <span class="type">double</span> i, <span class="type">double</span> e) : <span class="fn">name</span>(n), <span class="fn">income</span>(i), <span class="fn">expense</span>(e) {}
+    string <span class="fn">getName</span>()    { <span class="kw">return</span> name; }
+    <span class="type">double</span> <span class="fn">getIncome</span>()  { <span class="kw">return</span> income; }
+    <span class="type">double</span> <span class="fn">getExpense</span>() { <span class="kw">return</span> expense; }
+    <span class="type">double</span> <span class="fn">getTurnover</span>(){ <span class="kw">return</span> income + expense; }
+    <span class="type">double</span> <span class="fn">getProfit</span>()  { <span class="kw">return</span> income - expense; }
+    <span class="type">void</span> <span class="fn">setName</span>(string n)    { name = n; }
+    <span class="type">void</span> <span class="fn">setIncome</span>(<span class="type">double</span> i)  { income = i; }
+    <span class="type">void</span> <span class="fn">setExpense</span>(<span class="type">double</span> e) { expense = e; }
+    <span class="type">void</span> <span class="fn">print</span>() {
+        cout &lt;&lt; name &lt;&lt; <span class="str">" доход:"</span> &lt;&lt; income &lt;&lt; <span class="str">" расход:"</span> &lt;&lt; expense
+             &lt;&lt; <span class="str">" оборот:"</span> &lt;&lt; <span class="fn">getTurnover</span>() &lt;&lt; <span class="str">" прибыль:"</span> &lt;&lt; <span class="fn">getProfit</span>() &lt;&lt; <span class="str">"\n"</span>;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Company</span>&gt; companies = {
+        {<span class="str">"Apple"</span>,  <span class="num">5000</span>, <span class="num">2000</span>},
+        {<span class="str">"Google"</span>, <span class="num">8000</span>, <span class="num">3000</span>},
+        {<span class="str">"Yandex"</span>, <span class="num">2000</span>, <span class="num">1500</span>}
+    };
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Вывести 2.Редактировать 0.Выход\n"</span>; cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="kw">for</span> (<span class="kw">auto</span>&amp; c : companies) c.<span class="fn">print</span>(); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>) {
+            <span class="type">int</span> i, field; cin &gt;&gt; i &gt;&gt; field;
+            <span class="kw">if</span> (field == <span class="num">1</span>) { string n; cin &gt;&gt; n; companies[i].<span class="fn">setName</span>(n); }
+            <span class="kw">else if</span> (field == <span class="num">2</span>) { <span class="type">double</span> v; cin &gt;&gt; v; companies[i].<span class="fn">setIncome</span>(v); }
+            <span class="kw">else</span> { <span class="type">double</span> v; cin &gt;&gt; v; companies[i].<span class="fn">setExpense</span>(v); }
+        }
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+}`},
+{num:6,title:"Компании, исключения",task:["Класс Company с геттерами дохода/расхода.","Если оборот < 1 000 000 — бросить runtime_error.","Поймать исключение в main и вывести сообщение."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;stdexcept&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Company</span> {
+    <span class="type">double</span> income, expense;
+<span class="kw">public</span>:
+    <span class="fn">Company</span>(<span class="type">double</span> i, <span class="type">double</span> e) : <span class="fn">income</span>(i), <span class="fn">expense</span>(e) {}
+    <span class="type">double</span> <span class="fn">getIncome</span>() {
+        <span class="kw">if</span> (income + expense &lt; <span class="num">1000000</span>) <span class="kw">throw</span> runtime_error(<span class="str">"Оборот &lt; 1M: данные скрыты"</span>);
+        <span class="kw">return</span> income;
+    }
+    <span class="type">double</span> <span class="fn">getExpense</span>() {
+        <span class="kw">if</span> (income + expense &lt; <span class="num">1000000</span>) <span class="kw">throw</span> runtime_error(<span class="str">"Оборот &lt; 1M: данные скрыты"</span>);
+        <span class="kw">return</span> expense;
+    }
+    <span class="type">double</span> <span class="fn">getTurnover</span>(){ <span class="kw">return</span> income + expense; }
+    <span class="type">double</span> <span class="fn">getProfit</span>()  { <span class="kw">return</span> income - expense; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">double</span> i, e; cin &gt;&gt; i &gt;&gt; e;
+    <span class="type">Company</span> c(i, e);
+    <span class="kw">try</span> {
+        cout &lt;&lt; <span class="str">"Доход: "</span>   &lt;&lt; c.<span class="fn">getIncome</span>()  &lt;&lt; <span class="str">"\n"</span>;
+        cout &lt;&lt; <span class="str">"Расход: "</span>  &lt;&lt; c.<span class="fn">getExpense</span>() &lt;&lt; <span class="str">"\n"</span>;
+        cout &lt;&lt; <span class="str">"Оборот: "</span>  &lt;&lt; c.<span class="fn">getTurnover</span>()&lt;&lt; <span class="str">"\n"</span>;
+        cout &lt;&lt; <span class="str">"Прибыль: "</span> &lt;&lt; c.<span class="fn">getProfit</span>()  &lt;&lt; <span class="str">"\n"</span>;
+    }
+    <span class="kw">catch</span> (<span class="kw">const</span> runtime_error&amp; ex) {
+        cout &lt;&lt; ex.<span class="fn">what</span>() &lt;&lt; <span class="str">"\n"</span>;
+    }
+}`},
+{num:7,title:"Конструктор копирования",task:["Класс MyArray с динамическим массивом.","Реализовать конструктор копирования (глубокое копирование).","Продемонстрировать его вызов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">MyArray</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">int</span> size;
+    <span class="fn">MyArray</span>() : <span class="fn">data</span>(<span class="kw">nullptr</span>), <span class="fn">size</span>(<span class="num">0</span>) {}
+    <span class="fn">MyArray</span>(<span class="type">int</span> n) : <span class="fn">size</span>(n) { data = <span class="kw">new</span> <span class="type">int</span>[n]; }
+    <span class="cmt">// Конструктор копирования — глубокое копирование</span>
+    <span class="fn">MyArray</span>(<span class="kw">const</span> <span class="type">MyArray</span>&amp; other) {
+        cout &lt;&lt; <span class="str">"Конструктор копирования сработал!\n"</span>;
+        size = other.size;
+        data = <span class="kw">new</span> <span class="type">int</span>[size];
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; size; i++) data[i] = other.data[i];
+    }
+    ~<span class="fn">MyArray</span>() { <span class="kw">delete</span>[] data; }
+};
+
+<span class="type">MyArray</span> <span class="fn">createArray</span>(<span class="type">int</span> n) {
+    <span class="type">MyArray</span> arr(n);
+    <span class="kw">return</span> arr;
+}
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">MyArray</span> a(<span class="fn">createArray</span>(<span class="num">5</span>)); <span class="cmt">// вызовет конструктор копирования</span>
+}`},
+{num:8,title:"Студенты со статическим полем",task:["Класс Student со статическим счётчиком и авто-id.","Меню: вывести, добавить, редактировать, удалить.","Использовать vector<Student>."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Student</span> {
+    <span class="kw">static</span> <span class="type">int</span> count;
+<span class="kw">public</span>:
+    <span class="kw">const</span> <span class="type">int</span> id;
+    string name, gender;
+    <span class="type">int</span> age;
+    <span class="fn">Student</span>() : <span class="fn">id</span>(++count), <span class="fn">name</span>(<span class="str">""</span>), <span class="fn">gender</span>(<span class="str">""</span>), <span class="fn">age</span>(<span class="num">0</span>) {}
+    <span class="fn">Student</span>(string n, string g, <span class="type">int</span> a) : <span class="fn">id</span>(++count), <span class="fn">name</span>(n), <span class="fn">gender</span>(g), <span class="fn">age</span>(a) {}
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; id &lt;&lt; <span class="str">" "</span> &lt;&lt; name &lt;&lt; <span class="str">" "</span> &lt;&lt; gender &lt;&lt; <span class="str">" "</span> &lt;&lt; age &lt;&lt; <span class="str">"\n"</span>; }
+};
+<span class="type">int</span> <span class="type">Student</span>::count = <span class="num">0</span>;
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Student</span>&gt; students = {
+        <span class="fn">Student</span>(<span class="str">"Анна"</span>,  <span class="str">"F"</span>, <span class="num">20</span>),
+        <span class="fn">Student</span>(<span class="str">"Иван"</span>,  <span class="str">"M"</span>, <span class="num">21</span>),
+        <span class="fn">Student</span>(<span class="str">"Мария"</span>, <span class="str">"F"</span>, <span class="num">19</span>)
+    };
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Вывести 2.Добавить 3.Редактировать 4.Удалить 0.Выход\n"</span>; cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) { <span class="kw">for</span> (<span class="kw">auto</span>&amp; s : students) s.<span class="fn">print</span>(); }
+        <span class="kw">else if</span> (choice == <span class="num">2</span>) { string n,g; <span class="type">int</span> a; cin&gt;&gt;n&gt;&gt;g&gt;&gt;a; students.<span class="fn">push_back</span>(<span class="fn">Student</span>(n,g,a)); }
+        <span class="kw">else if</span> (choice == <span class="num">3</span>) { <span class="type">int</span> i; cin&gt;&gt;i; cin&gt;&gt;students[i].name&gt;&gt;students[i].gender&gt;&gt;students[i].age; }
+        <span class="kw">else if</span> (choice == <span class="num">4</span>) { <span class="type">int</span> i; cin&gt;&gt;i; students.<span class="fn">erase</span>(students.<span class="fn">begin</span>()+i); }
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+}`},
+{num:9,title:"Отряды — перегрузка >>, <<, int",task:["Класс Squad: archers, spearman, horseman.","Перегрузить >> и << для ввода/вывода.","Перегрузить operator int() — сумма воинов."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Squad</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span> archers, spearman, horseman;
+    <span class="fn">Squad</span>(<span class="type">int</span> a, <span class="type">int</span> s, <span class="type">int</span> h) : <span class="fn">archers</span>(a), <span class="fn">spearman</span>(s), <span class="fn">horseman</span>(h) {}
+    <span class="kw">operator</span> <span class="type">int</span>() { <span class="kw">return</span> archers + spearman + horseman; }
+};
+
+istream&amp; <span class="kw">operator</span>&gt;&gt;(istream&amp; in, <span class="type">Squad</span>&amp; s) {
+    in &gt;&gt; s.archers &gt;&gt; s.spearman &gt;&gt; s.horseman; <span class="kw">return</span> in;
+}
+ostream&amp; <span class="kw">operator</span>&lt;&lt;(ostream&amp; out, <span class="kw">const</span> <span class="type">Squad</span>&amp; s) {
+    out &lt;&lt; <span class="str">"Archers:"</span> &lt;&lt; s.archers &lt;&lt; <span class="str">" Spear:"</span> &lt;&lt; s.spearman &lt;&lt; <span class="str">" Horse:"</span> &lt;&lt; s.horseman;
+    <span class="kw">return</span> out;
+}
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Squad</span> s1(<span class="num">10</span>,<span class="num">5</span>,<span class="num">3</span>), s2(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>);
+    cin &gt;&gt; s2;
+    cout &lt;&lt; s1 &lt;&lt; <span class="str">"\n"</span> &lt;&lt; s2 &lt;&lt; <span class="str">"\n"</span>;
+    cout &lt;&lt; <span class="str">"Total s1: "</span> &lt;&lt; (<span class="type">int</span>)s1 &lt;&lt; <span class="str">"\n"</span>;
+}`},
+{num:10,title:"Отряды — перегрузка +, -, ==",task:["operator+: объединить отряды, оба обнулить.","operator-: сражение, победитель с уроном 50%, побеждённый обнулить.","operator==: сравнить по суммарной численности."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Squad</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span> archers, spearman, horseman;
+    <span class="fn">Squad</span>(<span class="type">int</span> a, <span class="type">int</span> s, <span class="type">int</span> h) : <span class="fn">archers</span>(a), <span class="fn">spearman</span>(s), <span class="fn">horseman</span>(h) {}
+    <span class="type">int</span> <span class="fn">total</span>() <span class="kw">const</span> { <span class="kw">return</span> archers + spearman + horseman; }
+    <span class="type">Squad</span> <span class="kw">operator</span>+(<span class="type">Squad</span>&amp; other) {
+        <span class="type">Squad</span> result(archers+other.archers, spearman+other.spearman, horseman+other.horseman);
+        archers=spearman=horseman=<span class="num">0</span>;
+        other.archers=other.spearman=other.horseman=<span class="num">0</span>;
+        <span class="kw">return</span> result;
+    }
+    <span class="type">Squad</span> <span class="kw">operator</span>-(<span class="type">Squad</span>&amp; other) {
+        <span class="kw">if</span> (<span class="fn">total</span>() &gt;= other.<span class="fn">total</span>()) {
+            other.archers=other.spearman=other.horseman=<span class="num">0</span>;
+            archers/=<span class="num">2</span>; spearman/=<span class="num">2</span>; horseman/=<span class="num">2</span>;
+            <span class="kw">return</span> *<span class="kw">this</span>;
+        } <span class="kw">else</span> {
+            archers=spearman=horseman=<span class="num">0</span>;
+            other.archers/=<span class="num">2</span>; other.spearman/=<span class="num">2</span>; other.horseman/=<span class="num">2</span>;
+            <span class="kw">return</span> other;
+        }
+    }
+    <span class="type">bool</span> <span class="kw">operator</span>==(<span class="kw">const</span> <span class="type">Squad</span>&amp; other) { <span class="kw">return</span> <span class="fn">total</span>() == other.<span class="fn">total</span>(); }
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; archers &lt;&lt; <span class="str">" "</span> &lt;&lt; spearman &lt;&lt; <span class="str">" "</span> &lt;&lt; horseman &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Squad</span> s1(<span class="num">10</span>,<span class="num">5</span>,<span class="num">3</span>), s2(<span class="num">8</span>,<span class="num">4</span>,<span class="num">2</span>);
+    <span class="type">Squad</span> s3 = s1 + s2; s3.<span class="fn">print</span>();
+    <span class="type">Squad</span> s4(<span class="num">10</span>,<span class="num">5</span>,<span class="num">3</span>), s5(<span class="num">2</span>,<span class="num">1</span>,<span class="num">0</span>);
+    <span class="type">Squad</span> winner = s4 - s5; winner.<span class="fn">print</span>();
+    <span class="type">Squad</span> s6(<span class="num">5</span>,<span class="num">5</span>,<span class="num">5</span>), s7(<span class="num">3</span>,<span class="num">7</span>,<span class="num">5</span>);
+    cout &lt;&lt; (s6 == s7 ? <span class="str">"Equal"</span> : <span class="str">"Not equal"</span>) &lt;&lt; <span class="str">"\n"</span>;
+}`},
+{num:11,title:"Тело и тело в пространстве (наследование)",task:["Базовый класс Body: размеры, масса, материал.","Дочерний класс AreaBody добавляет координаты x, y, z.","Вызвать метод print() родителя из дочернего объекта."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Body</span> {
+<span class="kw">public</span>:
+    <span class="type">double</span> h, w, d, mass;
+    string material;
+    <span class="fn">Body</span>(<span class="type">double</span> h, <span class="type">double</span> w, <span class="type">double</span> d, <span class="type">double</span> m, string mat)
+        : <span class="fn">h</span>(h), <span class="fn">w</span>(w), <span class="fn">d</span>(d), <span class="fn">mass</span>(m), <span class="fn">material</span>(mat) {}
+    <span class="type">void</span> <span class="fn">print</span>() {
+        cout &lt;&lt; <span class="str">"Body: "</span> &lt;&lt; h &lt;&lt; <span class="str">"x"</span> &lt;&lt; w &lt;&lt; <span class="str">"x"</span> &lt;&lt; d
+             &lt;&lt; <span class="str">" mass:"</span> &lt;&lt; mass &lt;&lt; <span class="str">" mat:"</span> &lt;&lt; material &lt;&lt; <span class="str">"\n"</span>;
+    }
+};
+
+<span class="kw">class</span> <span class="type">AreaBody</span> : <span class="kw">public</span> <span class="type">Body</span> {
+<span class="kw">public</span>:
+    <span class="type">double</span> x, y, z;
+    <span class="fn">AreaBody</span>(<span class="type">double</span> h, <span class="type">double</span> w, <span class="type">double</span> d, <span class="type">double</span> m, string mat,
+             <span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> z)
+        : <span class="fn">Body</span>(h, w, d, m, mat), <span class="fn">x</span>(x), <span class="fn">y</span>(y), <span class="fn">z</span>(z) {}
+    <span class="type">void</span> <span class="fn">printArea</span>() { cout &lt;&lt; <span class="str">"Pos: ("</span> &lt;&lt; x &lt;&lt; <span class="str">","</span> &lt;&lt; y &lt;&lt; <span class="str">","</span> &lt;&lt; z &lt;&lt; <span class="str">")\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Body</span> b(<span class="num">2</span>, <span class="num">1</span>, <span class="num">1</span>, <span class="num">5</span>, <span class="str">"Wood"</span>);
+    <span class="type">AreaBody</span> ab(<span class="num">3</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">10</span>, <span class="str">"Metal"</span>, <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>);
+    b.<span class="fn">print</span>();
+    ab.<span class="fn">print</span>();
+    ab.<span class="fn">printArea</span>();
+}`},
+{num:12,title:"Виртуальный метод",task:["Базовый класс Old с виртуальным методом show().","Дочерний класс Nouveau переопределяет show().","Меню: добавлять Old/Nouveau, выводить через указатель."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;memory&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Old</span> {
+<span class="kw">public</span>:
+    <span class="kw">virtual</span> <span class="type">void</span> <span class="fn">show</span>() { cout &lt;&lt; <span class="str">"Old\n"</span>; }
+    <span class="kw">virtual</span> ~<span class="fn">Old</span>() {}
+};
+
+<span class="kw">class</span> <span class="type">Nouveau</span> : <span class="kw">public</span> <span class="type">Old</span> {
+<span class="kw">public</span>:
+    <span class="type">void</span> <span class="fn">show</span>() <span class="kw">override</span> { cout &lt;&lt; <span class="str">"Nouveau\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;shared_ptr&lt;<span class="type">Old</span>&gt;&gt; items;
+    <span class="type">int</span> choice;
+    <span class="kw">do</span> {
+        cout &lt;&lt; <span class="str">"1.Old 2.Nouveau 3.Показать 0.Выход\n"</span>; cin &gt;&gt; choice;
+        <span class="kw">if</span> (choice == <span class="num">1</span>) items.<span class="fn">push_back</span>(make_shared&lt;<span class="type">Old</span>&gt;());
+        <span class="kw">else if</span> (choice == <span class="num">2</span>) items.<span class="fn">push_back</span>(make_shared&lt;<span class="type">Nouveau</span>&gt;());
+        <span class="kw">else if</span> (choice == <span class="num">3</span>) <span class="kw">for</span> (<span class="kw">auto</span>&amp; p : items) p-&gt;<span class="fn">show</span>();
+    } <span class="kw">while</span> (choice != <span class="num">0</span>);
+}`},
+{num:13,title:"Гараж (абстрактный класс)",task:["Абстрактный класс Vehicle с чистым методом print().","Дочерние Car и Bus реализуют print().","Хранить в vector<shared_ptr<Vehicle>>."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;memory&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Vehicle</span> {
+<span class="kw">public</span>:
+    string brand;
+    <span class="type">int</span> mileage;
+    <span class="fn">Vehicle</span>() : <span class="fn">brand</span>(<span class="str">""</span>), <span class="fn">mileage</span>(<span class="num">0</span>) {}
+    <span class="kw">virtual</span> <span class="type">void</span> <span class="fn">print</span>() = <span class="num">0</span>;
+    <span class="kw">virtual</span> ~<span class="fn">Vehicle</span>() {}
+};
+
+<span class="kw">class</span> <span class="type">Car</span> : <span class="kw">public</span> <span class="type">Vehicle</span> {
+<span class="kw">public</span>:
+    <span class="type">bool</span> is_active;
+    <span class="fn">Car</span>(string b, <span class="type">int</span> m, <span class="type">bool</span> a) { brand=b; mileage=m; is_active=a; }
+    <span class="type">void</span> <span class="fn">print</span>() <span class="kw">override</span> {
+        cout &lt;&lt; <span class="str">"Car: "</span> &lt;&lt; brand &lt;&lt; <span class="str">" km:"</span> &lt;&lt; mileage &lt;&lt; <span class="str">" active:"</span> &lt;&lt; is_active &lt;&lt; <span class="str">"\n"</span>;
+    }
+};
+
+<span class="kw">class</span> <span class="type">Bus</span> : <span class="kw">public</span> <span class="type">Vehicle</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span> capacity;
+    <span class="fn">Bus</span>(string b, <span class="type">int</span> m, <span class="type">int</span> c) { brand=b; mileage=m; capacity=c; }
+    <span class="type">void</span> <span class="fn">print</span>() <span class="kw">override</span> {
+        cout &lt;&lt; <span class="str">"Bus: "</span> &lt;&lt; brand &lt;&lt; <span class="str">" km:"</span> &lt;&lt; mileage &lt;&lt; <span class="str">" seats:"</span> &lt;&lt; capacity &lt;&lt; <span class="str">"\n"</span>;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;shared_ptr&lt;<span class="type">Vehicle</span>&gt;&gt; garage;
+    garage.<span class="fn">push_back</span>(make_shared&lt;<span class="type">Car</span>&gt;(<span class="str">"Toyota"</span>, <span class="num">50000</span>, <span class="kw">true</span>));
+    garage.<span class="fn">push_back</span>(make_shared&lt;<span class="type">Car</span>&gt;(<span class="str">"BMW"</span>,    <span class="num">20000</span>, <span class="kw">false</span>));
+    garage.<span class="fn">push_back</span>(make_shared&lt;<span class="type">Bus</span>&gt;(<span class="str">"Volvo"</span>,  <span class="num">100000</span>, <span class="num">45</span>));
+    <span class="kw">for</span> (<span class="kw">auto</span>&amp; v : garage) v-&gt;<span class="fn">print</span>();
+}`},
+{num:14,title:"Кубик и мячик (абстрактный класс)",task:["Абстрактный класс Body с полями физики.","Дочерние Dice и Ball реализуют dropIt(force).","Dice катится, Ball прыгает."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Body</span> {
+<span class="kw">public</span>:
+    <span class="type">float</span> mass, x, y, z, bounce;
+    <span class="kw">virtual</span> <span class="type">int</span> <span class="fn">dropIt</span>(<span class="type">int</span> force) = <span class="num">0</span>;
+    <span class="kw">virtual</span> ~<span class="fn">Body</span>() {}
+};
+
+<span class="kw">class</span> <span class="type">Dice</span> : <span class="kw">public</span> <span class="type">Body</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span> num;
+    <span class="fn">Dice</span>(<span class="type">float</span> m, <span class="type">float</span> bx, <span class="type">float</span> by, <span class="type">float</span> bz, <span class="type">float</span> b)
+        { mass=m; x=bx; y=by; z=bz; bounce=b; num=<span class="num">1</span>; }
+    <span class="type">int</span> <span class="fn">dropIt</span>(<span class="type">int</span> force) <span class="kw">override</span> {
+        <span class="type">int</span> rolls = (<span class="type">int</span>)(force * bounce * y) + <span class="num">1</span>;
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; rolls; i++) num = <span class="fn">rand</span>() % <span class="num">6</span> + <span class="num">1</span>;
+        cout &lt;&lt; <span class="str">"Dice rolled "</span> &lt;&lt; rolls &lt;&lt; <span class="str">" times, result: "</span> &lt;&lt; num &lt;&lt; <span class="str">"\n"</span>;
+        <span class="kw">return</span> num;
+    }
+};
+
+<span class="kw">class</span> <span class="type">Ball</span> : <span class="kw">public</span> <span class="type">Body</span> {
+<span class="kw">public</span>:
+    <span class="type">float</span> jump_height;
+    <span class="fn">Ball</span>(<span class="type">float</span> m, <span class="type">float</span> bx, <span class="type">float</span> by, <span class="type">float</span> bz, <span class="type">float</span> b)
+        { mass=m; x=bx; y=by; z=bz; bounce=b; jump_height=by; }
+    <span class="type">int</span> <span class="fn">dropIt</span>(<span class="type">int</span> force) <span class="kw">override</span> {
+        jump_height = y * bounce;
+        cout &lt;&lt; <span class="str">"Ball jumped to "</span> &lt;&lt; jump_height &lt;&lt; <span class="str">"\n"</span>;
+        y = <span class="num">0</span>;
+        <span class="kw">return</span> (<span class="type">int</span>)jump_height;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Dice</span> d(<span class="num">0.1f</span>, <span class="num">0</span>, <span class="num">2</span>, <span class="num">0</span>, <span class="num">0.3f</span>);
+    <span class="type">Ball</span> b(<span class="num">0.2f</span>, <span class="num">0</span>, <span class="num">5</span>, <span class="num">0</span>, <span class="num">0.8f</span>);
+    d.<span class="fn">dropIt</span>(<span class="num">5</span>);
+    b.<span class="fn">dropIt</span>(<span class="num">0</span>);
+}`},
+{num:15,title:"Зелье и яд (интерфейс)",task:["Интерфейс IUsable с чистым методом action(int& hp).","Классы Potion и Poison реализуют action().","Класс Player использует IUsable через метод use()."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">IUsable</span> {
+<span class="kw">public</span>:
+    <span class="kw">virtual</span> <span class="type">void</span> <span class="fn">action</span>(<span class="type">int</span>&amp; hp) = <span class="num">0</span>;
+    <span class="kw">virtual</span> ~<span class="fn">IUsable</span>() {}
+};
+
+<span class="kw">class</span> <span class="type">Potion</span> : <span class="kw">public</span> <span class="type">IUsable</span> {
+    <span class="type">int</span> healPower;
+<span class="kw">public</span>:
+    <span class="fn">Potion</span>(<span class="type">int</span> h) : <span class="fn">healPower</span>(h) {}
+    <span class="type">void</span> <span class="fn">action</span>(<span class="type">int</span>&amp; hp) <span class="kw">override</span> { hp += healPower; cout &lt;&lt; <span class="str">"Лечение +"</span> &lt;&lt; healPower &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="kw">class</span> <span class="type">Poison</span> : <span class="kw">public</span> <span class="type">IUsable</span> {
+    <span class="type">int</span> dmg;
+<span class="kw">public</span>:
+    <span class="fn">Poison</span>(<span class="type">int</span> d) : <span class="fn">dmg</span>(d) {}
+    <span class="type">void</span> <span class="fn">action</span>(<span class="type">int</span>&amp; hp) <span class="kw">override</span> { hp -= dmg; cout &lt;&lt; <span class="str">"Яд -"</span> &lt;&lt; dmg &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="kw">class</span> <span class="type">Player</span> {
+<span class="kw">public</span>:
+    string name;
+    <span class="type">int</span> hp;
+    <span class="fn">Player</span>(string n, <span class="type">int</span> h) : <span class="fn">name</span>(n), <span class="fn">hp</span>(h) {}
+    <span class="type">void</span> <span class="fn">use</span>(<span class="type">IUsable</span>&amp; item) { item.<span class="fn">action</span>(hp); }
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; name &lt;&lt; <span class="str">" HP:"</span> &lt;&lt; hp &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Player</span> player(<span class="str">"Герой"</span>, <span class="num">100</span>);
+    <span class="type">Potion</span> p1(<span class="num">20</span>), p2(<span class="num">10</span>);
+    <span class="type">Poison</span> v1(<span class="num">15</span>), v2(<span class="num">5</span>);
+    player.<span class="fn">use</span>(p1); player.<span class="fn">use</span>(p2);
+    player.<span class="fn">use</span>(v1); player.<span class="fn">use</span>(v2);
+    player.<span class="fn">print</span>();
+}`},
+{num:16,title:"Дом с квартирами (композиция)",task:["Класс Apartment: площадь, кол-во комнат.","Класс Building содержит Apartment через unique_ptr.","Перегрузить << для обоих классов.","При удалении Building — квартиры уничтожаются автоматически."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;memory&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Apartment</span> {
+<span class="kw">public</span>:
+    <span class="type">float</span> area;
+    <span class="type">int</span> rooms;
+    <span class="fn">Apartment</span>(<span class="type">float</span> a, <span class="type">int</span> r) : <span class="fn">area</span>(a), <span class="fn">rooms</span>(r) {}
+    ~<span class="fn">Apartment</span>() { cout &lt;&lt; <span class="str">"Квартира удалена\n"</span>; }
+    <span class="kw">friend</span> ostream&amp; <span class="kw">operator</span>&lt;&lt;(ostream&amp; os, <span class="kw">const</span> <span class="type">Apartment</span>&amp; a) {
+        os &lt;&lt; <span class="str">"Apt "</span> &lt;&lt; a.rooms &lt;&lt; <span class="str">" комн. "</span> &lt;&lt; a.area &lt;&lt; <span class="str">" кв.м"</span>; <span class="kw">return</span> os;
+    }
+};
+
+<span class="kw">class</span> <span class="type">Building</span> {
+    vector&lt;unique_ptr&lt;<span class="type">Apartment</span>&gt;&gt; apts;
+<span class="kw">public</span>:
+    <span class="fn">Building</span>() {}
+    ~<span class="fn">Building</span>() { cout &lt;&lt; <span class="str">"Дом снесён\n"</span>; }
+    <span class="type">void</span> <span class="fn">addApt</span>(<span class="type">float</span> area, <span class="type">int</span> rooms) {
+        apts.<span class="fn">push_back</span>(make_unique&lt;<span class="type">Apartment</span>&gt;(area, rooms));
+    }
+    <span class="type">void</span> <span class="fn">removeApt</span>(<span class="type">int</span> i) { apts.<span class="fn">erase</span>(apts.<span class="fn">begin</span>() + i); }
+    <span class="kw">friend</span> ostream&amp; <span class="kw">operator</span>&lt;&lt;(ostream&amp; os, <span class="kw">const</span> <span class="type">Building</span>&amp; b) {
+        <span class="kw">for</span> (<span class="kw">auto</span>&amp; a : b.apts) os &lt;&lt; *a &lt;&lt; <span class="str">"\n"</span>; <span class="kw">return</span> os;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Building</span> house;
+    house.<span class="fn">addApt</span>(<span class="num">45.0f</span>, <span class="num">1</span>);
+    house.<span class="fn">addApt</span>(<span class="num">70.0f</span>, <span class="num">3</span>);
+    house.<span class="fn">addApt</span>(<span class="num">55.0f</span>, <span class="num">2</span>);
+    cout &lt;&lt; house;
+    house.<span class="fn">removeApt</span>(<span class="num">0</span>);
+    cout &lt;&lt; house;
+}`},
+{num:17,title:"Игрок и кубики (агрегация)",task:["Класс Dice с методом roll().","Класс Player хранит указатели на Dice (агрегация).","Кубики существуют независимо от игрока."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Dice</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span> sides;
+    <span class="fn">Dice</span>(<span class="type">int</span> s) : <span class="fn">sides</span>(s) {}
+    <span class="type">int</span> <span class="fn">roll</span>() { <span class="kw">return</span> <span class="fn">rand</span>() % sides + <span class="num">1</span>; }
+};
+
+<span class="kw">class</span> <span class="type">Player</span> {
+    vector&lt;<span class="type">Dice</span>*&gt; dices;
+<span class="kw">public</span>:
+    <span class="type">void</span> <span class="fn">takeDice</span>(<span class="type">Dice</span>* d) { dices.<span class="fn">push_back</span>(d); }
+    <span class="type">void</span> <span class="fn">rollAll</span>() {
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; (<span class="type">int</span>)dices.<span class="fn">size</span>(); i++)
+            cout &lt;&lt; <span class="str">"Кубик d"</span> &lt;&lt; dices[i]-&gt;sides &lt;&lt; <span class="str">": "</span> &lt;&lt; dices[i]-&gt;<span class="fn">roll</span>() &lt;&lt; <span class="str">"\n"</span>;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Dice</span> d4(<span class="num">4</span>), d6(<span class="num">6</span>), d20(<span class="num">20</span>);
+    <span class="type">Player</span> player;
+    player.<span class="fn">takeDice</span>(&amp;d4);
+    player.<span class="fn">takeDice</span>(&amp;d6);
+    player.<span class="fn">takeDice</span>(&amp;d20);
+    player.<span class="fn">rollAll</span>();
+}`},
+{num:18,title:"Игроки и карты (агрегация)",task:["Класс Card: масть, значение.","Класс Player хранит Card* (агрегация).","Игроки берут карты со стола и выкладывают обратно."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Card</span> {
+<span class="kw">public</span>:
+    string suit;
+    <span class="type">int</span> value;
+    <span class="fn">Card</span>(string s, <span class="type">int</span> v) : <span class="fn">suit</span>(s), <span class="fn">value</span>(v) {}
+    <span class="type">void</span> <span class="fn">print</span>() { cout &lt;&lt; value &lt;&lt; <span class="str">" of "</span> &lt;&lt; suit &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="kw">class</span> <span class="type">Player</span> {
+<span class="kw">public</span>:
+    vector&lt;<span class="type">Card</span>*&gt; hand;
+    <span class="type">void</span> <span class="fn">takeCard</span>(<span class="type">Card</span>* c) { hand.<span class="fn">push_back</span>(c); }
+    <span class="type">Card</span>* <span class="fn">putCard</span>() {
+        <span class="kw">if</span> (hand.<span class="fn">empty</span>()) <span class="kw">return</span> <span class="kw">nullptr</span>;
+        <span class="type">Card</span>* c = hand.<span class="fn">back</span>(); hand.<span class="fn">pop_back</span>(); <span class="kw">return</span> c;
+    }
+    <span class="type">void</span> <span class="fn">showHand</span>() { <span class="kw">for</span> (<span class="kw">auto</span> c : hand) c-&gt;<span class="fn">print</span>(); }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="type">Card</span>*&gt; table = {
+        <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Hearts"</span>,<span class="num">2</span>), <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Spades"</span>,<span class="num">7</span>),
+        <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Clubs"</span>,<span class="num">10</span>),  <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Diamonds"</span>,<span class="num">5</span>),
+        <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Hearts"</span>,<span class="num">9</span>),  <span class="kw">new</span> <span class="type">Card</span>(<span class="str">"Spades"</span>,<span class="num">3</span>)
+    };
+    <span class="type">Player</span> p1, p2;
+    p1.<span class="fn">takeCard</span>(table[<span class="num">0</span>]); table.<span class="fn">erase</span>(table.<span class="fn">begin</span>());
+    p2.<span class="fn">takeCard</span>(table[<span class="num">0</span>]); table.<span class="fn">erase</span>(table.<span class="fn">begin</span>());
+    p1.<span class="fn">takeCard</span>(table[<span class="num">0</span>]); table.<span class="fn">erase</span>(table.<span class="fn">begin</span>());
+    cout &lt;&lt; <span class="str">"P1:"</span>; p1.<span class="fn">showHand</span>();
+    cout &lt;&lt; <span class="str">"P2:"</span>; p2.<span class="fn">showHand</span>();
+    <span class="type">Card</span>* c1 = p1.<span class="fn">putCard</span>(); <span class="kw">if</span>(c1) { cout &lt;&lt; <span class="str">"P1 выложил: "</span>; c1-&gt;<span class="fn">print</span>(); }
+    <span class="type">Card</span>* c2 = p2.<span class="fn">putCard</span>(); <span class="kw">if</span>(c2) { cout &lt;&lt; <span class="str">"P2 выложил: "</span>; c2-&gt;<span class="fn">print</span>(); }
+}`},
+{num:19,title:"Односвязный список (operator[])",task:["Класс Node с shared_ptr на data и next.","Класс List с методом add().","Перегрузить operator[] для доступа по индексу."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;memory&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    shared_ptr&lt;<span class="type">int</span>&gt;  data;
+    shared_ptr&lt;<span class="type">Node</span>&gt; next;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(make_shared&lt;<span class="type">int</span>&gt;(v)), <span class="fn">next</span>(<span class="kw">nullptr</span>) {}
+};
+
+<span class="kw">class</span> <span class="type">List</span> {
+    shared_ptr&lt;<span class="type">Node</span>&gt; first, last;
+<span class="kw">public</span>:
+    <span class="fn">List</span>() : <span class="fn">first</span>(<span class="kw">nullptr</span>), <span class="fn">last</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">add</span>(<span class="type">int</span> v) {
+        <span class="kw">auto</span> n = make_shared&lt;<span class="type">Node</span>&gt;(v);
+        <span class="kw">if</span> (!first) { first = last = n; }
+        <span class="kw">else</span> { last-&gt;next = n; last = n; }
+    }
+    <span class="type">int</span> <span class="kw">operator</span>[](<span class="type">int</span> idx) {
+        <span class="kw">auto</span> cur = first;
+        <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; idx; i++) cur = cur-&gt;next;
+        <span class="kw">return</span> *cur-&gt;data;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">List</span> lst;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) lst.<span class="fn">add</span>(i * <span class="num">10</span>);
+    cout &lt;&lt; lst[<span class="num">4</span>] &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 40</span>
+}`},
+{num:20,title:"Односвязный список (operator<<)",task:["Класс List с методом add().","Перегрузить operator<< для вывода всего списка."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;memory&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    shared_ptr&lt;<span class="type">int</span>&gt;  data;
+    shared_ptr&lt;<span class="type">Node</span>&gt; next;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(make_shared&lt;<span class="type">int</span>&gt;(v)), <span class="fn">next</span>(<span class="kw">nullptr</span>) {}
+};
+
+<span class="kw">class</span> <span class="type">List</span> {
+    shared_ptr&lt;<span class="type">Node</span>&gt; first, last;
+<span class="kw">public</span>:
+    <span class="fn">List</span>() : <span class="fn">first</span>(<span class="kw">nullptr</span>), <span class="fn">last</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">add</span>(<span class="type">int</span> v) {
+        <span class="kw">auto</span> n = make_shared&lt;<span class="type">Node</span>&gt;(v);
+        <span class="kw">if</span> (!first) { first = last = n; }
+        <span class="kw">else</span> { last-&gt;next = n; last = n; }
+    }
+    <span class="kw">friend</span> ostream&amp; <span class="kw">operator</span>&lt;&lt;(ostream&amp; os, <span class="kw">const</span> <span class="type">List</span>&amp; l) {
+        <span class="kw">auto</span> cur = l.first;
+        <span class="kw">while</span> (cur) { os &lt;&lt; *cur-&gt;data &lt;&lt; <span class="str">" "</span>; cur = cur-&gt;next; }
+        <span class="kw">return</span> os;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">List</span> lst;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) lst.<span class="fn">add</span>(i);
+    cout &lt;&lt; lst &lt;&lt; <span class="str">"\n"</span>;
+}`},
+{num:21,title:"Двусвязный список",task:["Класс Node с указателями next и prev.","Класс List с методом add().","При уничтожении списка — все узлы освобождаются."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">Node</span>* next;
+    <span class="type">Node</span>* prev;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(<span class="kw">new</span> <span class="type">int</span>(v)), <span class="fn">next</span>(<span class="kw">nullptr</span>), <span class="fn">prev</span>(<span class="kw">nullptr</span>) {}
+    ~<span class="fn">Node</span>() { <span class="kw">delete</span> data; }
+};
+
+<span class="kw">class</span> <span class="type">List</span> {
+    <span class="type">Node</span>* first;
+    <span class="type">Node</span>* last;
+<span class="kw">public</span>:
+    <span class="fn">List</span>() : <span class="fn">first</span>(<span class="kw">nullptr</span>), <span class="fn">last</span>(<span class="kw">nullptr</span>) {}
+    ~<span class="fn">List</span>() { <span class="type">Node</span>* cur = first; <span class="kw">while</span>(cur) { <span class="type">Node</span>* n=cur-&gt;next; <span class="kw">delete</span> cur; cur=n; } }
+    <span class="type">void</span> <span class="fn">add</span>(<span class="type">int</span> v) {
+        <span class="type">Node</span>* n = <span class="kw">new</span> <span class="type">Node</span>(v);
+        <span class="kw">if</span> (!first) { first = last = n; }
+        <span class="kw">else</span> { n-&gt;prev = last; last-&gt;next = n; last = n; }
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">List</span> lst;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">100</span>; i++) lst.<span class="fn">add</span>(i);
+}`},
+{num:22,title:"Очередь (FIFO)",task:["Класс Queue: добавление в конец (push), взятие из начала (pop).","Каждый Node хранит указатель на int.","Реализовать корректную очистку памяти."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">Node</span>* next;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(<span class="kw">new</span> <span class="type">int</span>(v)), <span class="fn">next</span>(<span class="kw">nullptr</span>) {}
+    ~<span class="fn">Node</span>() { <span class="kw">delete</span> data; }
+};
+
+<span class="kw">class</span> <span class="type">Queue</span> {
+    <span class="type">Node</span>* first;
+    <span class="type">Node</span>* last;
+<span class="kw">public</span>:
+    <span class="fn">Queue</span>() : <span class="fn">first</span>(<span class="kw">nullptr</span>), <span class="fn">last</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">push</span>(<span class="type">int</span> v) {
+        <span class="type">Node</span>* n = <span class="kw">new</span> <span class="type">Node</span>(v);
+        <span class="kw">if</span> (!last) { first = last = n; }
+        <span class="kw">else</span> { last-&gt;next = n; last = n; }
+    }
+    <span class="type">int</span> <span class="fn">pop</span>() {
+        <span class="type">int</span> val = *first-&gt;data;
+        <span class="type">Node</span>* old = first;
+        first = first-&gt;next;
+        <span class="kw">if</span> (!first) last = <span class="kw">nullptr</span>;
+        <span class="kw">delete</span> old;
+        <span class="kw">return</span> val;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Queue</span> q;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">100</span>; i++) q.<span class="fn">push</span>(i);
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cout &lt;&lt; q.<span class="fn">pop</span>() &lt;&lt; <span class="str">" "</span>; <span class="cmt">// 0 1 2 3 4</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) q.<span class="fn">push</span>(<span class="num">200</span> + i);
+}`},
+{num:23,title:"Стек (LIFO)",task:["Класс Stack: добавление на вершину (put), снятие с вершины (pop).","Каждый Node хранит указатель на int и prev.","Реализовать корректную очистку памяти."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">Node</span>* prev;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(<span class="kw">new</span> <span class="type">int</span>(v)), <span class="fn">prev</span>(<span class="kw">nullptr</span>) {}
+    ~<span class="fn">Node</span>() { <span class="kw">delete</span> data; }
+};
+
+<span class="kw">class</span> <span class="type">Stack</span> {
+    <span class="type">Node</span>* top;
+<span class="kw">public</span>:
+    <span class="fn">Stack</span>() : <span class="fn">top</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">put</span>(<span class="type">int</span> v) {
+        <span class="type">Node</span>* n = <span class="kw">new</span> <span class="type">Node</span>(v);
+        n-&gt;prev = top;
+        top = n;
+    }
+    <span class="type">int</span> <span class="fn">pop</span>() {
+        <span class="type">int</span> val = *top-&gt;data;
+        <span class="type">Node</span>* old = top;
+        top = top-&gt;prev;
+        <span class="kw">delete</span> old;
+        <span class="kw">return</span> val;
+    }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Stack</span> st;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">100</span>; i++) st.<span class="fn">put</span>(i);
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) cout &lt;&lt; st.<span class="fn">pop</span>() &lt;&lt; <span class="str">" "</span>; <span class="cmt">// 99 98 97 96 95</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) st.<span class="fn">put</span>(<span class="num">200</span> + i);
+}`},
+{num:24,title:"Бинарное дерево — Pre-order",task:["Бинарное дерево поиска с классом Node.","Метод add() рекурсивно вставляет элемент.","Обход Pre-order: корень → левое → правое."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">Node</span>* left;
+    <span class="type">Node</span>* right;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(<span class="kw">new</span> <span class="type">int</span>(v)), <span class="fn">left</span>(<span class="kw">nullptr</span>), <span class="fn">right</span>(<span class="kw">nullptr</span>) {}
+};
+
+<span class="kw">class</span> <span class="type">Tree</span> {
+    <span class="type">Node</span>* root;
+    <span class="type">void</span> <span class="fn">addRec</span>(<span class="type">Node</span>*&amp; node, <span class="type">int</span> v) {
+        <span class="kw">if</span> (!node) { node = <span class="kw">new</span> <span class="type">Node</span>(v); <span class="kw">return</span>; }
+        <span class="kw">if</span> (v &lt; *node-&gt;data) <span class="fn">addRec</span>(node-&gt;left, v);
+        <span class="kw">else</span>                 <span class="fn">addRec</span>(node-&gt;right, v);
+    }
+    <span class="type">void</span> <span class="fn">preorder</span>(<span class="type">Node</span>* node) {
+        <span class="kw">if</span> (!node) <span class="kw">return</span>;
+        cout &lt;&lt; *node-&gt;data &lt;&lt; <span class="str">" "</span>;
+        <span class="fn">preorder</span>(node-&gt;left);
+        <span class="fn">preorder</span>(node-&gt;right);
+    }
+<span class="kw">public</span>:
+    <span class="fn">Tree</span>() : <span class="fn">root</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">add</span>(<span class="type">int</span> v) { <span class="fn">addRec</span>(root, v); }
+    <span class="type">void</span> <span class="fn">print</span>() { <span class="fn">preorder</span>(root); cout &lt;&lt; <span class="str">"\n"</span>; }
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Tree</span> t;
+    <span class="kw">for</span> (<span class="type">int</span> v : {<span class="num">18</span>,<span class="num">99</span>,<span class="num">2</span>,<span class="num">-19</span>,<span class="num">20</span>,<span class="num">44</span>,<span class="num">-5</span>,<span class="num">0</span>,<span class="num">1</span>,<span class="num">88</span>,<span class="num">-3</span>,<span class="num">3</span>,<span class="num">90</span>}) t.<span class="fn">add</span>(v);
+    t.<span class="fn">print</span>();
+}`},
+{num:25,title:"Бинарное дерево — In-order",task:["Бинарное дерево поиска с классом Node.","Метод add() рекурсивно вставляет элемент.","Обход In-order: левое → корень → правое (отсортированный вывод)."],
+code:`<span class="pp">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="kw">class</span> <span class="type">Node</span> {
+<span class="kw">public</span>:
+    <span class="type">int</span>* data;
+    <span class="type">Node</span>* left;
+    <span class="type">Node</span>* right;
+    <span class="fn">Node</span>(<span class="type">int</span> v) : <span class="fn">data</span>(<span class="kw">new</span> <span class="type">int</span>(v)), <span class="fn">left</span>(<span class="kw">nullptr</span>), <span class="fn">right</span>(<span class="kw">nullptr</span>) {}
+};
+
+<span class="kw">class</span> <span class="type">Tree</span> {
+    <span class="type">Node</span>* root;
+    <span class="type">void</span> <span class="fn">addRec</span>(<span class="type">Node</span>*&amp; node, <span class="type">int</span> v) {
+        <span class="kw">if</span> (!node) { node = <span class="kw">new</span> <span class="type">Node</span>(v); <span class="kw">return</span>; }
+        <span class="kw">if</span> (v &lt; *node-&gt;data) <span class="fn">addRec</span>(node-&gt;left, v);
+        <span class="kw">else</span>                 <span class="fn">addRec</span>(node-&gt;right, v);
+    }
+    <span class="type">void</span> <span class="fn">inorder</span>(<span class="type">Node</span>* node) {
+        <span class="kw">if</span> (!node) <span class="kw">return</span>;
+        <span class="fn">inorder</span>(node-&gt;left);
+        cout &lt;&lt; *node-&gt;data &lt;&lt; <span class="str">" "</span>;
+        <span class="fn">inorder</span>(node-&gt;right);
+    }
+<span class="kw">public</span>:
+    <span class="fn">Tree</span>() : <span class="fn">root</span>(<span class="kw">nullptr</span>) {}
+    <span class="type">void</span> <span class="fn">add</span>(<span class="type">int</span> v) { <span class="fn">addRec</span>(root, v); }
+    <span class="type">void</span> <span class="fn">print</span>() { <span class="fn">inorder</span>(root); cout &lt;&lt; <span class="str">"\n"</span>; } <span class="cmt">// числа по возрастанию</span>
+};
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">Tree</span> t;
+    <span class="kw">for</span> (<span class="type">int</span> v : {<span class="num">18</span>,<span class="num">99</span>,<span class="num">2</span>,<span class="num">-19</span>,<span class="num">20</span>,<span class="num">44</span>,<span class="num">-5</span>,<span class="num">0</span>,<span class="num">1</span>,<span class="num">88</span>,<span class="num">-3</span>,<span class="num">3</span>,<span class="num">90</span>}) t.<span class="fn">add</span>(v);
+    t.<span class="fn">print</span>();
+}`}
+];
+
+let active={g:0,i:0};
+let openTabs=[{g:0,i:0}];
+function getData(g){return g===0?T:T2;}
+function tabsHas(g,i){return openTabs.some(t=>t.g===g&&t.i===i);}
 function buildSidebar(){
-  const c=document.getElementById('sidebar-files');
-  T.forEach((t,i)=>{
-    const el=document.createElement('div');
-    el.className='tree-file'+(i===0?' active':'');
-    el.id='sf-'+i;
-    el.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="ticket-num">&#8470;${t.num}</span>`;
-    el.onclick=()=>openTicket(i);
-    c.appendChild(el);
-  });
+  const tree=document.getElementById('sidebar-tree');tree.innerHTML='';
+  const af=(label,color)=>{const d=document.createElement('div');d.className='grp-label';d.style.color=color;d.textContent=label;tree.appendChild(d);};
+  const fn=(g,i,lbl,ic)=>{const el=document.createElement('div');el.className='tree-file';el.id='sf-'+g+':'+i;
+    if(active.g===g&&active.i===i)el.classList.add('active');
+    el.innerHTML='<span class="file-icon" style="color:'+ic+'">&#128196;</span> '+lbl+' <span class="ticket-num">&#8470;'+getData(g)[i].num+'</span>';
+    el.onclick=()=>openTicket(g,i);tree.appendChild(el);};
+  af('── C++ ОСНОВЫ ──','#4ec9b0');
+  T.forEach((_,i)=>fn(0,i,'билет_'+String(i+1).padStart(2,'0')+'.cpp','#519aba'));
+  af('── C++ ООП ──','#c586c0');
+  T2.forEach((_,i)=>fn(1,i,'ооп_'+String(i+1).padStart(2,'0')+'.cpp','#c586c0'));
 }
-
 function buildTabs(){
-  const bar=document.getElementById('tabs-bar');
-  bar.innerHTML='';
-  openTabs.forEach(idx=>{
-    const t=T[idx];
-    const tab=document.createElement('div');
-    tab.className='tab'+(idx===active?' active':'');
-    tab.id='tab-'+idx;
-    tab.innerHTML=`<span class="file-icon">&#128196;</span> билет_${String(t.num).padStart(2,'0')}.cpp <span class="tab-close" onclick="closeTab(event,${idx})">&#215;</span>`;
-    tab.onclick=()=>openTicket(idx);
-    bar.appendChild(tab);
-  });
+  const bar=document.getElementById('tabs-bar');bar.innerHTML='';
+  openTabs.forEach(({g,i})=>{
+    const isAct=active.g===g&&active.i===i;
+    const name=(g===0?'билет_':'ооп_')+String(i+1).padStart(2,'0')+'.cpp';
+    const ic=g===0?'#519aba':'#c586c0';
+    const tab=document.createElement('div');tab.className='tab'+(isAct?' active':'');
+    tab.innerHTML='<span class="file-icon" style="color:'+ic+'">&#128196;</span> '+name+' <span class="tab-close" onclick="closeTab(event,'+g+','+i+')">&#215;</span>';
+    tab.onclick=()=>openTicket(g,i);bar.appendChild(tab);});
 }
-
-function renderCode(idx){
-  const t=T[idx];
-  const lines=t.code.split('\n');
-  document.getElementById('line-numbers').innerHTML=lines.map((_,i)=>i+1).join('\n');
+function renderCode(g,i){
+  const t=getData(g)[i];const lines=t.code.split('\n');
+  document.getElementById('line-numbers').innerHTML=lines.map((_,n)=>n+1).join('\n');
   document.getElementById('code-content').innerHTML=t.code;
-  document.getElementById('status-pos').textContent=`Стр 1, Стб 1 | ${lines.length} строк`;
+  document.getElementById('status-pos').textContent='Стр 1, Стб 1 | '+lines.length+' строк';
 }
-
-function renderTask(idx){
-  const t=T[idx];
+function renderTask(g,i){
+  const t=getData(g)[i];const lb=g===0?'Билет':'ООП';
   document.getElementById('task-body').innerHTML=
-    `<div class="task-title">Билет &#8470;${t.num} &mdash; ${t.title}</div>`+
-    t.task.map(item=>`<div class="task-item"><span class="task-bullet">&#9657;</span><span>${item}</span></div>`).join('');
+    '<div class="task-title">'+lb+' &#8470;'+t.num+' &mdash; '+t.title+'</div>'+
+    t.task.map(it=>'<div class="task-item"><span class="task-bullet">&#9657;</span><span>'+it+'</span></div>').join('');
 }
-
-function openTicket(idx){
-  active=idx;
-  if(!openTabs.includes(idx)) openTabs.push(idx);
-  document.querySelectorAll('.tree-file').forEach(el=>el.classList.remove('active'));
-  const sf=document.getElementById('sf-'+idx); if(sf) sf.classList.add('active');
-  buildTabs(); renderCode(idx); renderTask(idx); updateTerm(idx);
-}
-
-function closeTab(e,idx){
-  e.stopPropagation();
-  openTabs=openTabs.filter(t=>t!==idx);
-  if(!openTabs.length) openTabs=[0];
-  if(active===idx) active=openTabs[openTabs.length-1];
-  buildTabs(); renderCode(active); renderTask(active);
-}
-
-function updateTerm(idx){
-  const t=T[idx];
-  const name=`билет_${String(t.num).padStart(2,'0')}.cpp`;
+function updateTerm(g,i){
+  const name=(g===0?'билет_':'ооп_')+String(i+1).padStart(2,'0')+'.cpp';
   document.getElementById('terminal-body').innerHTML=
-    `<span class="term-ok">Сборка начата...</span><br><span class="term-info">&nbsp;&nbsp;1&gt; MSVC 19.38 &mdash; x64 Debug</span><br><span class="term-info">&nbsp;&nbsp;1&gt; Компиляция: ${name}</span><br><span class="term-ok">&nbsp;&nbsp;1&gt; ${name} &mdash; ошибок: 0</span><br><span class="term-ok">========== Сборка: 1 успешно, 0 ошибок ==========</span>`;
+    '<span class="term-ok">Сборка начата...</span><br>'+
+    '<span class="term-info">&nbsp;&nbsp;1&gt; MSVC 19.38 &mdash; x64 Debug</span><br>'+
+    '<span class="term-info">&nbsp;&nbsp;1&gt; Компиляция: '+name+'</span><br>'+
+    '<span class="term-ok">&nbsp;&nbsp;1&gt; '+name+' &mdash; ошибок: 0</span><br>'+
+    '<span class="term-ok">========== Сборка: 1 успешно, 0 ошибок ==========</span>';
 }
-
-function buildAndRun(){ updateTerm(active); }
-function syncScroll(){ document.getElementById('line-numbers').scrollTop=document.getElementById('code-content').scrollTop; }
-
+function openTicket(g,i){
+  active={g,i};if(!tabsHas(g,i))openTabs.push({g,i});
+  buildSidebar();buildTabs();renderCode(g,i);renderTask(g,i);updateTerm(g,i);
+}
+function closeTab(e,g,i){
+  e.stopPropagation();openTabs=openTabs.filter(t=>!(t.g===g&&t.i===i));
+  if(!openTabs.length)openTabs=[{g:0,i:0}];
+  if(active.g===g&&active.i===i){const l=openTabs[openTabs.length-1];active={g:l.g,i:l.i};}
+  buildSidebar();buildTabs();renderCode(active.g,active.i);renderTask(active.g,active.i);
+}
+function buildAndRun(){updateTerm(active.g,active.i);}
+function syncScroll(){document.getElementById('line-numbers').scrollTop=document.getElementById('code-content').scrollTop;}
 </script>
-
-</div>
-
 <script>
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  if (name === 'vs' && !vsInited) {
-    vsInited = true;
-    buildSidebar(); buildTabs(); renderCode(0); renderTask(0);
-  }
+let vsInited=false;
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(name==='vs'&&!vsInited){vsInited=true;buildSidebar();buildTabs();renderCode(0,0);renderTask(0,0);}
 }
-
-let vsInited = false;
 </script>
-
 </body>
 </html>
